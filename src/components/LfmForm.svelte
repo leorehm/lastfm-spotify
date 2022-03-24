@@ -1,4 +1,5 @@
 <script>
+	import { timeRange, token, tokenExpired } from "../stores.js";
 	let username = "leo26299";
 	const period = ["overall", "7day", "1month", "3month", "6month", "12month"];
 	let chosenPeriod = "7day";
@@ -24,14 +25,15 @@
 		trackdata = __trackdata;
 	}
 
-	// TODO: input username, period, limit and api key as parameter
+	// TODO: input username, period, limit and api key as parameter with URLSeachParams()
 	async function fetchLfmData() {
+		console.log("fetching last.fm data...")
 		const url = "http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=" + username + "&period=" + chosenPeriod + "&limit" + limit + "&api_key=" + apiKey + "&format=json";
-		console.log(url);
 		await fetch(url)
 			.then(response => response.json())
 			.then(data => {
 				__trackdata = data.toptracks.track;
+				console.log("...done!")
 		});
 	}
 </script>

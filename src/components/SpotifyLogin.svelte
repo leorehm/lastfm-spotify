@@ -29,19 +29,30 @@
 
 </script>
 
-<div id="login">
+{#if !$token}
+  <div id="login">
     <a href={loginLink}>
-        <button class="login-btn">Connect to Spotify</button>
+      <button class="login-btn">Connect to Spotify</button>
     </a>
     <br />
     <div id="checkbox-container">
-        <label id="checkbox-text" for="remember-me">Remember me?</label>
-        <input
+      <label id="checkbox-text" for="remember-me">Remember me?</label>
+      <input
         id="checkbox-box"
         name="remember-me"
         type="checkbox"
         bind:checked={rememberMe}
-        />
+      />
     </div>
-</div>
+  </div>
+{/if}
+
+{#if $tokenExpired}
+  <section class="expired-token">
+    <p>Token expired! Please log out and log back in again.</p>
+    <a href={$appUrl}>
+      <button>Logout</button>
+    </a>
+  </section>
+{/if}
 
