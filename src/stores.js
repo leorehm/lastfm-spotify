@@ -16,7 +16,7 @@ export const token = readable(null, function start(set) {
 })
 
 export const appUrl = readable(null, function start(set) {
-  set("http://leorehm.github.io/lastfm-spotify");
+  set("https://leorehm.github.io/lastfm-spotify");
   // set("http://localhost:8080/");
 })
 
