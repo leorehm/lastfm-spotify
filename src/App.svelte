@@ -8,7 +8,7 @@
 {#if trackdata}
 	<LfmForm bind:trackdata={trackdata}></LfmForm>
 {:else}
-	<SpotifyLogin></SpotifyLogin>s
+	<SpotifyLogin></SpotifyLogin>
 {/if}
 
 
