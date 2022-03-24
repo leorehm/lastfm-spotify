@@ -1,6 +1,6 @@
 <script>
 	import { timeRange, token, tokenExpired, trackdata } from "../stores.js";
-	let username = "leo26299";
+	let username = "";
 	const period = ["overall", "7day", "1month", "3month", "6month", "12month"];
 	let chosenPeriod = "7day";
 	let limit = 20;
@@ -39,21 +39,23 @@
 
 <div class="container">
 	<form class="item-form" on:submit|preventDefault={onSubmit}>
-
+	<div>
 		<label class="form-label" for="username">last.fm username</label>
 		<input class="form-input" name="username" type=text bind:value={username}><br>
-
+	</div>
+	<div>
 		<label class="form-label" for="limit">track limit</label>
 		<input class="form-input" name="limit" type=number bind:value={limit} min=1 max=100><br>
-		
-		<label class="form-label" for="period">time period</label>
+	</div>
+	<div>
+	<label class="form-label" for="period">time period</label>
 		<select class="form-input" name="period" bind:value={chosenPeriod}>
 			{#each period as period}
 				<option>{period}</option>
 			{/each}
 		</select><br>
-
-		<button id="submit-button" on:click|once={onSubmit}>Get Data</button>
+	</div>
+		<button id="submit-button" disbaled={username = ""} on:click|once={onSubmit}>Get Data</button>
 	</form>
 	
 	<div class="item-output">
@@ -64,29 +66,29 @@
 <style>
 	.container {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr 1fr, 1fr;
 	}
 	.item-form {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-column: 1		
+		grid-template-rows: 1fr 1fr;
+		grid-row: 1		
 	}
 	.item-output {
-		grid-column: 2;
+		grid-row: 2;
 	}
 	.form-label {
-		grid-column: 1;
+		grid-row: 1;
 		display: inline-block;
 		text-align: center;
 	}
 	.form-input {
-		grid-column: 2;
+		grid-row: 1;
 		height: 2.2em;
 		width: 80%
 	}
     #song-output {
-		height: 20em;
-		width: auto;
+		height: 10em;
+		width: 95vw;
 	}
 	#submit-button {
 		height: 2em;
@@ -95,7 +97,7 @@
 	#next-button {
 		height: 2em;
 		width: 20em;
-		transform: translate(50%, 50%);
+		/* transform: translate(50%, 50%); */
 		left: 50%;
 	}
 

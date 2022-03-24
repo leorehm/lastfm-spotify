@@ -56,3 +56,27 @@
   </section>
 {/if}
 
+
+<style>
+
+#login {
+  position: relative;
+  left: 25%;
+}
+.login-btn {
+  grid-row: 1;
+
+}
+#checkbox-container {
+  align-text: center;
+}
+#checkbox-text {
+  
+}
+
+#checkbox-box{
+
+}
+
+
+</style>

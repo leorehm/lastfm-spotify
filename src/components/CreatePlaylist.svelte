@@ -1,17 +1,11 @@
 <script>
     import { onMount } from "svelte";
     import { token, timeRange, tokenExpired, trackdata} from "../stores.js";
-    let playlistName = "last.fm top 50";
-    let playlistDesc = "New playlist description";
+    let playlistName = "last.fm top " + $trackdata.length;
+    let playlistDesc = "";
     let user_id;
     let playlistInfo;
-
-    onMount(() =>  {
-        console.log('token: ', $token);
-        console.log('time range: ', $timeRange);
-        console.log('token expired: ', $tokenExpired);
-        console.log('track data: ', $trackdata);
-    });
+    let message = "";
 
     async function getUser() {
         const accessToken = $token;
@@ -30,6 +24,7 @@
 
     async function createPlaylist() {
         // https://developer.spotify.com/documentation/web-api/reference/#/operations/create-playlist
+        message = "Please wait: Playlist is being created...";
         await getUser();
         console.log("creating playlist for user ", user_id);
         const accessToken = $token;
@@ -59,7 +54,7 @@
         // https://developer.spotify.com/documentation/web-api/reference/#/operations/search
         // query could be optimized for higher accuracy
         
-        console.log("searching for: ", track, " - ", artist);
+        // console.log("searching for: ", track, " - ", artist);
 
         const url = `https://api.spotify.com/v1/search?q=track:${track}%20artist:${artist}&type=track&limit=5`;
         const accessToken = $token;
@@ -89,15 +84,18 @@
 
     async function addToPlaylist() {
         // https://developer.spotify.com/documentation/web-api/reference/#/operations/add-tracks-to-playlist
-        
+        message = "Please wait: Getting songs...";
+
         // get all song ids
         const ids = []
         for (let i = 0; i<$trackdata.length; i++) {
             ids.push(await getSongId($trackdata[i].name, $trackdata[i].artist.name))
         }
-        console.log("finished getting track ids:", ids);
+        // console.log("finished getting track ids:", ids);
         
         // add songs to playlist
+        message = "Please wait: Adding songs to playlist...";
+
         const accessToken = $token;
         const url = `https://api.spotify.com/v1/playlists/${playlistInfo.id}/tracks`
 
@@ -121,15 +119,23 @@
 		})
         .catch(error => {
             console.log(error);
+            message = "Oh no, something went wrong!";
         });
+
+        message = "Success!";
     }
 
 </script>
 
-<label class="label" for="playlist-name">Name der Playlist</label>
+<label class="label" for="playlist-name">Playlist Name</label>
 <input class="input" name="playlist-name" type=text bind:value={playlistName}><br>
 
-<button on:click|once={createPlaylist}>Playlist erstellen</button> 
+<label class="label" for="playlist-desc">Description</label>
+<input class="input" name="playlist-desc" type=text bind:value={playlistDesc}><br>
+
+<button on:click|once={createPlaylist}>Create Playlist</button> 
+
+<p>{message}</p>
 
 <style>
 
