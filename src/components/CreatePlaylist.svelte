@@ -1,6 +1,5 @@
 <script>
-import { onMount } from "svelte";
-
+    import { onMount } from "svelte";
     import { token, timeRange, tokenExpired, trackdata} from "../stores.js";
     let playlistName = "last.fm top 50";
     let playlistDesc = "New playlist description";
@@ -30,11 +29,11 @@ import { onMount } from "svelte";
     }
 
     async function createPlaylist() {
+        // https://developer.spotify.com/documentation/web-api/reference/#/operations/create-playlist
         await getUser();
         console.log("creating playlist for user ", user_id);
         const accessToken = $token;
 
-        let result;
         const res = await fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
             method: 'POST',
             headers: {
@@ -47,26 +46,82 @@ import { onMount } from "svelte";
             })
         })
 
-        // if(res.ok) {
+        if(res.ok) {
             playlistInfo = await res.json();
-
-        // } else {
-        //     tokenExpired.set(true);     
-        // }
+        } else {
+            tokenExpired.set(true);     
+        }
         
-        console.log(playlistInfo);
+        addToPlaylist();
     }
 
-    async function getSongIds() {
-        const res = await fetch(``, {
-            
+    async function getSongId(track, artist) {
+        // https://developer.spotify.com/documentation/web-api/reference/#/operations/search
+        // query could be optimized for higher accuracy
+        
+        console.log("searching for: ", track, " - ", artist);
+
+        const url = `https://api.spotify.com/v1/search?q=track:${track}%20artist:${artist}&type=track&limit=5`;
+        const accessToken = $token;
+        let id;
+        const res = await fetch(url, {
+            method: 'GET',
+            headers: {
+                Authorization: "Bearer " + accessToken,
+            },
         })
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            }
+            throw new Error("Track not found - skipping")
+        })
+        .then(data => {
+            console.log(data);
+            console.log("track_id found: ", data.tracks.items[0].uri);
+            id = data.tracks.items[0].uri;
+		})
+        .catch(error => {
+            console.log(error);
+        });
+        return id;
     }
 
     async function addToPlaylist() {
-        const res = await fetch(``, {
+        // https://developer.spotify.com/documentation/web-api/reference/#/operations/add-tracks-to-playlist
+        
+        // get all song ids
+        const ids = []
+        for (let i = 0; i<$trackdata.length; i++) {
+            ids.push(await getSongId($trackdata[i].name, $trackdata[i].artist.name))
+        }
+        console.log("finished getting track ids:", ids);
+        
+        // add songs to playlist
+        const accessToken = $token;
+        const url = `https://api.spotify.com/v1/playlists/${playlistInfo.id}/tracks`
 
+        const res = await fetch(url, {
+            method: 'POST',
+            headers: {
+                Authorization: "Bearer " + accessToken,
+            },
+            body: JSON.stringify({
+                uris: ids,
+            })
         })
+        .then(response => {
+            if (response.ok) {
+                return response.json()
+            }
+            throw new Error("Adding to playlist not successful");
+        })
+        .then(data => {
+            console.log('add to playlist RESPONSE: ', data);
+		})
+        .catch(error => {
+            console.log(error);
+        });
     }
 
 </script>
@@ -75,7 +130,6 @@ import { onMount } from "svelte";
 <input class="input" name="playlist-name" type=text bind:value={playlistName}><br>
 
 <button on:click|once={createPlaylist}>Playlist erstellen</button> 
-
 
 <style>
 

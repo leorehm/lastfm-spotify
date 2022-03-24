@@ -3,7 +3,7 @@
 	let username = "leo26299";
 	const period = ["overall", "7day", "1month", "3month", "6month", "12month"];
 	let chosenPeriod = "7day";
-	let limit = 50;
+	let limit = 20;
 	const apiKey = "57411198178c595fbb09fabbe83934ac";
 	let __trackdata;
 	let output = "";
@@ -27,7 +27,7 @@
 	// TODO: input username, period, limit and api key as parameter with URLSeachParams()
 	async function fetchLfmData() {
 		console.log("fetching last.fm data...")
-		const url = "http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=" + username + "&period=" + chosenPeriod + "&limit" + limit + "&api_key=" + apiKey + "&format=json";
+		const url = "http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=" + username + "&period=" + chosenPeriod + "&limit=" + limit + "&api_key=" + apiKey + "&format=json";
 		await fetch(url)
 			.then(response => response.json())
 			.then(data => {
