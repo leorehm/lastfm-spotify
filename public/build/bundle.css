@@ -1,0 +1,4 @@
+.container.svelte-16mug8m{display:grid;grid-template-columns:1fr 1fr}.item-form.svelte-16mug8m{display:grid;grid-template-columns:1fr 1fr;grid-column:1		
+	}.item-output.svelte-16mug8m{grid-column:2}.form-label.svelte-16mug8m{grid-column:1;display:inline-block;text-align:center}.form-input.svelte-16mug8m{grid-column:2;height:2.2em;width:80%
+	}#song-output.svelte-16mug8m{height:20em;width:auto}#submit-button.svelte-16mug8m{height:2em;width:80%
+	}#next-button.svelte-16mug8m{height:2em;width:20em;transform:translate(50%, 50%);left:50%}
