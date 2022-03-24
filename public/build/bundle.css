@@ -1,4 +1,4 @@
 .container.svelte-et0bzl{display:grid;grid-template-columns:1fr 1fr, 1fr}.item-form.svelte-et0bzl{display:grid;grid-template-rows:1fr 1fr;grid-row:1		
 	}.item-output.svelte-et0bzl{grid-row:2}.form-label.svelte-et0bzl{grid-row:1;display:inline-block;text-align:center}.form-input.svelte-et0bzl{grid-row:1;height:2.2em;width:80%
 	}#song-output.svelte-et0bzl{height:10em;width:95vw}#submit-button.svelte-et0bzl{height:2em;width:80%
-	}#next-button.svelte-et0bzl{height:2em;width:20em;left:50%}#login.svelte-181gumj{position:relative;left:25%}.login-btn.svelte-181gumj{grid-row:1}#checkbox-container.svelte-181gumj{align-text:center}#checkbox-text.svelte-181gumj{}#checkbox-box.svelte-181gumj{}
+	}#next-button.svelte-et0bzl{height:2em;width:20em;left:50%}#login.svelte-181gumj{position:relative;left:25%}.login-btn.svelte-181gumj{grid-row:1}#checkbox-container.svelte-181gumj{align-text:center}
