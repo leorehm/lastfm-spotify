@@ -5,7 +5,7 @@
 </script>
 
 
-{#if trackdata}
+{#if !trackdata}
 	<LfmForm bind:trackdata={trackdata}></LfmForm>
 {:else}
 	<SpotifyLogin></SpotifyLogin>

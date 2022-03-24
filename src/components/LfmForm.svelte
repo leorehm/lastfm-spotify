@@ -5,40 +5,97 @@
 	let limit = 50;
 	const apiKey = "57411198178c595fbb09fabbe83934ac";
 	export let trackdata;
+	let __trackdata;
+	let output = "";
 
-	function onSubmit() {
-		trackdata = fetchLfmData();
+	async function onSubmit() {
+		await fetchLfmData();
+		
+		if(output != "") output = "";
+
+		for(let i = 0; i<__trackdata.length; i++) {
+			output += i+1 + ": "
+			output += __trackdata[i].artist.name + " - ";
+			output += __trackdata[i].name + "\r\n";
+		}
 	}
 
+	function onNext() {
+		trackdata = __trackdata;
+	}
+
+	// TODO: input username, period, limit and api key as parameter
 	async function fetchLfmData() {
 		const url = "http://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=" + username + "&period=" + chosenPeriod + "&limit" + limit + "&api_key=" + apiKey + "&format=json";
-		const response = await self.fetch(url);
-		if(response.ok) {
-			return response.json();
-		} else {
-			throw new Error (tracks);
-		}
+		console.log(url);
+		await fetch(url)
+			.then(response => response.json())
+			.then(data => {
+				__trackdata = data.toptracks.track;
+		});
 	}
 </script>
 
-<form on:submit|preventDefault={onSubmit}>
-	<label>last.fm username
-		<input type=text bind:value={username}>
-	</label> 
-	<label>track limit
-		<input type=number bind:value={limit} min=1 max=100>
-	</label>
-	<label>time period
-		<select bind:value={chosenPeriod}>
+<div class="container">
+	<form class="item-form" on:submit|preventDefault={onSubmit}>
+
+		<label class="form-label" for="username">last.fm username</label>
+		<input class="form-input" name="username" type=text bind:value={username}><br>
+
+		<label class="form-label" for="limit">track limit</label>
+		<input class="form-input" name="limit" type=number bind:value={limit} min=1 max=100><br>
+		
+		<label class="form-label" for="period">time period</label>
+		<select class="form-input" name="period" bind:value={chosenPeriod}>
 			{#each period as period}
 				<option>{period}</option>
 			{/each}
-		</select>
-	</label>
-	<button on:click={onSubmit}>Submit</button>
-</form>
+		</select><br>
 
-
+		<button id="submit-button" on:click|once={onSubmit}>Submit</button>
+	</form>
+	
+	<div class="item-output">
+		<textarea readonly id="song-output" rows=limit cols=50 bind:value={output}></textarea>
+	</div>
+</div>
+<button id="next-button" disabled={output == ""} on:click|once={onNext}>Next</button>
 <style>
-    
+	.container {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+	.item-form {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-column: 1		
+	}
+	.item-output {
+		grid-column: 2;
+	}
+	.form-label {
+		grid-column: 1;
+		display: inline-block;
+		text-align: center;
+	}
+	.form-input {
+		grid-column: 2;
+		height: 2.2em;
+		width: 80%
+	}
+    #song-output {
+		height: 20em;
+		width: auto;
+	}
+	#submit-button {
+		height: 2em;
+		width: 80%
+	}
+	#next-button {
+		height: 2em;
+		width: 20em;
+		transform: translate(50%, 50%);
+		left: 50%;
+	}
+
 </style>
