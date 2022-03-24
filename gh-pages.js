@@ -1,7 +1,7 @@
 var ghpages = require('gh-pages');
 
 ghpages.publish(
-    './public', // path to public directory
+    'public', // path to public directory
     {
         branch: 'gh-pages',
         repo: 'https://github.com/leorehm/lastfm-spotify', // Update to point to your repository  
