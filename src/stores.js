@@ -23,3 +23,5 @@ export const appUrl = readable(null, function start(set) {
 export const timeRange = writable('medium_term');
 
 export const tokenExpired = writable(false);
+
+export const trackdata = writable(null);

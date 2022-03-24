@@ -1,9 +1,18 @@
 <script>
-    import { token, timeRange, tokenExpired } from "../stores.js";
+import { onMount } from "svelte";
+
+    import { token, timeRange, tokenExpired, trackdata} from "../stores.js";
     let playlistName = "last.fm top 50";
     let playlistDesc = "New playlist description";
     let user_id;
+    let playlistInfo;
 
+    onMount(() =>  {
+        console.log('token: ', $token);
+        console.log('time range: ', $timeRange);
+        console.log('token expired: ', $tokenExpired);
+        console.log('track data: ', $trackdata);
+    });
 
     async function getUser() {
         const accessToken = $token;
@@ -14,20 +23,19 @@
                 Authorization: "Bearer " + accessToken,
             },
         })
-        if(res.ok) {
-            const json = await res.json();
-		    result = JSON.stringify(json);
-            return result;
-        } else {
-            tokenExpired.set(true);     
-        }
+        .then(response => response.json())
+			.then(data => {
+                user_id = data.id;
+		});
     }
 
     async function createPlaylist() {
-        console.log(getUser())
+        await getUser();
+        console.log("creating playlist for user ", user_id);
         const accessToken = $token;
 
-        const res = await fetch('https://api.spotify.com/v1/users/leo26299/playlists', {
+        let result;
+        const res = await fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
             method: 'POST',
             headers: {
                 Authorization: "Bearer " + accessToken, 
@@ -39,14 +47,26 @@
             })
         })
 
-        if(res.ok) {
-            const json = await res.json();
-		    result = JSON.stringify(json);
-        } else {
-            tokenExpired.set(true);     
-        }
+        // if(res.ok) {
+            playlistInfo = await res.json();
+
+        // } else {
+        //     tokenExpired.set(true);     
+        // }
         
-        console.log(result);
+        console.log(playlistInfo);
+    }
+
+    async function getSongIds() {
+        const res = await fetch(``, {
+            
+        })
+    }
+
+    async function addToPlaylist() {
+        const res = await fetch(``, {
+
+        })
     }
 
 </script>

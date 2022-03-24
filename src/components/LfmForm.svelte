@@ -1,11 +1,10 @@
 <script>
-	import { timeRange, token, tokenExpired } from "../stores.js";
+	import { timeRange, token, tokenExpired, trackdata } from "../stores.js";
 	let username = "leo26299";
 	const period = ["overall", "7day", "1month", "3month", "6month", "12month"];
 	let chosenPeriod = "7day";
 	let limit = 50;
 	const apiKey = "57411198178c595fbb09fabbe83934ac";
-	export let trackdata;
 	let __trackdata;
 	let output = "";
 
@@ -22,7 +21,7 @@
 	}
 
 	function onNext() {
-		trackdata = __trackdata;
+		$trackdata = __trackdata;
 	}
 
 	// TODO: input username, period, limit and api key as parameter with URLSeachParams()
@@ -54,7 +53,7 @@
 			{/each}
 		</select><br>
 
-		<button id="submit-button" on:click|once={onSubmit}>Submit</button>
+		<button id="submit-button" on:click|once={onSubmit}>Get Data</button>
 	</form>
 	
 	<div class="item-output">
