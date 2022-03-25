@@ -7,7 +7,14 @@
     let playlistInfo;
     let message = "";
 
+    onMount(() => {
+        console.log($token);
+        console.log($tokenExpired);
+        console.log($trackdata);
+    })
+
     async function getUser() {
+        message = "Please wait: getting user data...";
         const accessToken = $token;
 
         const res = await fetch('https://api.spotify.com/v1/me', {
@@ -24,8 +31,8 @@
 
     async function createPlaylist() {
         // https://developer.spotify.com/documentation/web-api/reference/#/operations/create-playlist
-        message = "Please wait: Playlist is being created...";
         await getUser();
+        message = "Please wait: Playlist is being created...";
         console.log("creating playlist for user ", user_id);
         const accessToken = $token;
 

@@ -14,7 +14,7 @@
     }
 
     const url = new URL("https://accounts.spotify.com/authorize?");
-    const scope = "user-read-private user-read-email playlist-modify-public playlist-modify-private playlist-read-private";
+    const scope = "user-read-private user-read-email playlist-modify-public playlist-modify-private";
     const state = generateRandomString(16);
     let rememberMe = true;
     $: params = new URLSearchParams({
