@@ -1,17 +1,10 @@
 <script>
-    import { onMount } from "svelte";
     import { token, timeRange, tokenExpired, trackdata} from "../stores.js";
     let playlistName = "last.fm top " + $trackdata.length;
     let playlistDesc = "";
     let user_id;
     let playlistInfo;
     let message = "";
-
-    onMount(() => {
-        console.log($token);
-        console.log($tokenExpired);
-        console.log($trackdata);
-    })
 
     async function getUser() {
         message = "Please wait: getting user data...";
@@ -79,7 +72,7 @@
             throw new Error("Track not found - skipping")
         })
         .then(data => {
-            console.log(data);
+            // console.log(data);
             console.log("track_id found: ", data.tracks.items[0].uri);
             id = data.tracks.items[0].uri;
 		})
