@@ -10,7 +10,12 @@
 
 	async function onSubmit() {
 		console.log("username: ", username);
-		__trackdata = await fetchLfmData();
+		try {
+			__trackdata = await fetchLfmData();
+		} catch(e) {
+			output = trackdata.toString();
+			return;
+		} 
 		
 		if(output != "") output = "";
 
@@ -33,11 +38,20 @@
 		console.log("fetching last.fm data...")
 		const url = "https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=" + username + "&period=" + chosenPeriod + "&limit=" + limit + "&api_key=" + apiKey + "&format=json";
 		await fetch(url)
-			.then(response => response.json())
+			.then(response => {
+				if (response.ok) {
+					return response.json();
+				} 
+				throw new Error("No songs found. User may not exist or have songs scrobbled during the selected timeframe.")
+			})
 			.then(data => {
 				res = data.toptracks.track;
 				console.log("...done!")
-		});
+			})
+			.catch(error => {
+				console.log(error);
+				res = error;
+			});
 		return res;
 	}
 </script>
