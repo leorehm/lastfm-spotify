@@ -32,11 +32,11 @@
 {#if !$token}
   <div id="login">
     <a href={loginLink}>
-      <button class="login-btn">Connect to Spotify</button>
+      <button class="pure-button pure-button-primary" id="login-btn">Connect to Spotify</button>
     </a>
     <br />
     <div id="checkbox-container">
-      <label id="checkbox-text" for="remember-me">Remember me?</label>
+      <label id="checkbox-label" for="remember-me">Remember me?</label>
       <input
         id="checkbox-box"
         name="remember-me"
@@ -60,22 +60,43 @@
 <style>
 
 #login {
-  position: relative;
-  left: 25%;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+  /* align-items: center;
+  display: flex;
+  justify-content: center; */
 }
-.login-btn {
-  grid-row: 1;
+#login-btn {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 3rem;
+  padding-left: 10px;
+  padding-right: 10px;
 
+  font-weight: bold;
+  font-size: 125%;
+}
+
+.pure-button-primary {
+  border-radius: 12px;
 }
 #checkbox-container {
-  align-text: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
-#checkbox-text {
-  
+#checkbox-label {
+  display: inline-block;
+  text-align: center;
+  margin: auto;
+  font-weight: bold;
 }
 
 #checkbox-box{
-
+  display: inline-block;
+  margin: auto;
 }
 
 
