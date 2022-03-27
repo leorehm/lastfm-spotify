@@ -2,6 +2,7 @@
     import { token, timeRange, tokenExpired, trackdata} from "../stores.js";
     let playlistName = "last.fm top " + $trackdata.length;
     let playlistDesc = "";
+    let playlistScope = true; // true: public, false: private
     let user_id;
     let playlistInfo;
     let message = "";
@@ -36,6 +37,7 @@
             },
             body: JSON.stringify({
                 "name": playlistName,
+                "public": playlistScope,
                 "description": playlistDesc,
                 "public": false
             })
@@ -126,17 +128,70 @@
     }
 
 </script>
+    <div class="container">
 
-<label class="label" for="playlist-name">Playlist Name</label>
-<input class="input" name="playlist-name" type=text bind:value={playlistName}><br>
+    <label class="label" for="playlist-name">Playlist Name</label>
+    <input class="input" name="playlist-name" type=text bind:value={playlistName}><br>
 
-<label class="label" for="playlist-desc">Description</label>
-<input class="input" name="playlist-desc" type=text bind:value={playlistDesc}><br>
+    <label class="label" for="playlist-desc">Description</label>
+    <input class="input" name="playlist-desc" type=text bind:value={playlistDesc}><br>
 
-<button on:click|once={createPlaylist}>Create Playlist</button> 
+    <div class="pure-button-group" role="group">
+        <button id="public-button" class="toggle-button" class:active={playlistScope} on:click="{() => playlistScope = !playlistScope}">Public</button>
+        <button id="private-button" class="toggle-button" class:active={!playlistScope} on:click="{() => playlistScope = !playlistScope}">Private</button>
+    </div>
 
-<p>{message}</p>
+    <button class="pure-button-primary" on:click|once={createPlaylist}>Create Playlist <i class="fa-brands fa-spotify"></i></button> 
 
+    <p>{message}</p>
+</div>
 <style>
+    .container {
+        display: flex;
+		flex-direction: column;
+		justify-content: center;
+		flex-basis: auto;
+		align-items: center;
+		align-content: center;
+    }
+    .label {
+        margin: 10px 0 10px 0;
+		font-weight: bold;
+		text-align: center;
+    }
+    .input {
+        grid-row: 1;
+		height: 2.2em;
+		width: 15rem;
+    }
+    .pure-button-primary {
+		border-radius: 12px;
+        margin: 10px 0 10px 0;
+		width: 15rem;
+	}
+    .pure-button-group {
+        margin: 20px 0 10px 0;
+        justify-content: stretch;
+        border-radius: 12px;
+        width: 15rem;
+    }
 
+    .toggle-button {
+        font-size: 90%;
+        background-color: #005db3;
+        color: #333;
+        width: 50%;
+    }
+    .active {
+        font-size: 100%;
+        color: white;
+        background-color: #0078e7;
+    }
+    #public-button {
+        border-radius: 12px 0 0 12px;
+    }
+
+    #private-button {
+        border-radius: 0 12px 12px 0;
+    }
 </style>

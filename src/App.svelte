@@ -7,7 +7,6 @@
 
 <h2 style="text-align: center">last.fm to spotify playlist</h2>
 
-
 {#if !$token || $tokenExpired}
 	<SpotifyLogin></SpotifyLogin>
 {:else if !$trackdata}
