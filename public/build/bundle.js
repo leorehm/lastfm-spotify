@@ -561,23 +561,23 @@ var app = (function () {
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[6] = list[i];
+    	child_ctx[7] = list[i];
     	return child_ctx;
     }
 
-    // (72:3) {#each period as period}
+    // (78:3) {#each period as period}
     function create_each_block(ctx) {
     	let option;
-    	let t_value = /*period*/ ctx[6] + "";
+    	let t_value = /*period*/ ctx[7] + "";
     	let t;
 
     	const block = {
     		c: function create() {
     			option = element("option");
     			t = text(t_value);
-    			option.__value = /*period*/ ctx[6];
+    			option.__value = /*period*/ ctx[7];
     			option.value = option.__value;
-    			add_location(option, file$3, 72, 4, 2283);
+    			add_location(option, file$3, 78, 4, 2401);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option, anchor);
@@ -593,7 +593,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(72:3) {#each period as period}",
+    		source: "(78:3) {#each period as period}",
     		ctx
     	});
 
@@ -632,10 +632,9 @@ var app = (function () {
     	let t13;
     	let button1;
     	let t14;
-    	let button1_disabled_value;
     	let mounted;
     	let dispose;
-    	let each_value = /*period*/ ctx[6];
+    	let each_value = /*period*/ ctx[7];
     	validate_each_argument(each_value);
     	let each_blocks = [];
 
@@ -649,21 +648,21 @@ var app = (function () {
     			form = element("form");
     			div0 = element("div");
     			label0 = element("label");
-    			label0.textContent = "last.fm username";
+    			label0.textContent = "last.fm Username";
     			t1 = space();
     			input0 = element("input");
     			br0 = element("br");
     			t2 = space();
     			div1 = element("div");
     			label1 = element("label");
-    			label1.textContent = "track limit";
+    			label1.textContent = "Track Limit";
     			t4 = space();
     			input1 = element("input");
     			br1 = element("br");
     			t5 = space();
     			div2 = element("div");
     			label2 = element("label");
-    			label2.textContent = "time period";
+    			label2.textContent = "Time Period";
     			t7 = space();
     			select = element("select");
 
@@ -678,7 +677,7 @@ var app = (function () {
     			t10 = space();
     			div3 = element("div");
     			label3 = element("label");
-    			label3.textContent = "songs retrieved from last.fm";
+    			label3.textContent = "Songs retrieved from last.fm";
     			t12 = space();
     			textarea = element("textarea");
     			t13 = space();
@@ -686,57 +685,57 @@ var app = (function () {
     			t14 = text("Next");
     			attr_dev(label0, "class", "form-label svelte-3aywy4");
     			attr_dev(label0, "for", "username");
-    			add_location(label0, file$3, 61, 2, 1782);
+    			add_location(label0, file$3, 67, 2, 1900);
     			attr_dev(input0, "class", "form-input svelte-3aywy4");
     			attr_dev(input0, "name", "username");
     			attr_dev(input0, "type", "text");
-    			add_location(input0, file$3, 62, 2, 1851);
-    			add_location(br0, file$3, 62, 76, 1925);
-    			add_location(div0, file$3, 60, 1, 1773);
+    			add_location(input0, file$3, 68, 2, 1969);
+    			add_location(br0, file$3, 68, 76, 2043);
+    			add_location(div0, file$3, 66, 1, 1891);
     			attr_dev(label1, "class", "form-label svelte-3aywy4");
     			attr_dev(label1, "for", "limit");
-    			add_location(label1, file$3, 65, 2, 1950);
+    			add_location(label1, file$3, 71, 2, 2068);
     			attr_dev(input1, "class", "form-input svelte-3aywy4");
     			attr_dev(input1, "name", "limit");
     			attr_dev(input1, "type", "number");
     			attr_dev(input1, "min", "1");
     			attr_dev(input1, "max", "100");
-    			add_location(input1, file$3, 66, 2, 2011);
-    			add_location(br1, file$3, 66, 86, 2095);
-    			add_location(div1, file$3, 64, 1, 1941);
+    			add_location(input1, file$3, 72, 2, 2129);
+    			add_location(br1, file$3, 72, 86, 2213);
+    			add_location(div1, file$3, 70, 1, 2059);
     			attr_dev(label2, "class", "form-label svelte-3aywy4");
     			attr_dev(label2, "for", "period");
-    			add_location(label2, file$3, 69, 1, 2119);
+    			add_location(label2, file$3, 75, 1, 2237);
     			attr_dev(select, "class", "form-input svelte-3aywy4");
     			attr_dev(select, "name", "period");
-    			if (/*chosenPeriod*/ ctx[0] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[9].call(select));
-    			add_location(select, file$3, 70, 2, 2181);
-    			add_location(br2, file$3, 74, 11, 2333);
-    			add_location(div2, file$3, 68, 1, 2111);
+    			if (/*chosenPeriod*/ ctx[0] === void 0) add_render_callback(() => /*select_change_handler*/ ctx[10].call(select));
+    			add_location(select, file$3, 76, 2, 2299);
+    			add_location(br2, file$3, 80, 11, 2451);
+    			add_location(div2, file$3, 74, 1, 2229);
     			attr_dev(form, "class", "item-form");
-    			add_location(form, file$3, 59, 1, 1710);
+    			add_location(form, file$3, 65, 1, 1828);
     			attr_dev(button0, "class", "pure-button-primary svelte-3aywy4");
     			attr_dev(button0, "id", "submit-button");
-    			attr_dev(button0, "disbaled", button0_disbaled_value = /*username*/ ctx[3] = "");
-    			add_location(button0, file$3, 77, 1, 2359);
+    			attr_dev(button0, "disbaled", button0_disbaled_value = /*username*/ ctx[4] = "");
+    			add_location(button0, file$3, 83, 1, 2477);
     			attr_dev(label3, "for", "output");
     			attr_dev(label3, "class", "form-label svelte-3aywy4");
-    			add_location(label3, file$3, 80, 2, 2511);
+    			add_location(label3, file$3, 86, 2, 2629);
     			textarea.readOnly = true;
     			attr_dev(textarea, "id", "song-output");
     			attr_dev(textarea, "name", "song-output");
     			attr_dev(textarea, "rows", "limit");
     			attr_dev(textarea, "cols", "50");
     			attr_dev(textarea, "class", "svelte-3aywy4");
-    			add_location(textarea, file$3, 81, 2, 2588);
+    			add_location(textarea, file$3, 87, 2, 2706);
     			attr_dev(div3, "class", "item-output");
-    			add_location(div3, file$3, 79, 1, 2482);
+    			add_location(div3, file$3, 85, 1, 2600);
     			attr_dev(button1, "class", "pure-button-primary svelte-3aywy4");
     			attr_dev(button1, "id", "next-button");
-    			button1.disabled = button1_disabled_value = /*output*/ ctx[2] == "";
-    			add_location(button1, file$3, 83, 1, 2705);
+    			button1.disabled = /*nextButtonDisabled*/ ctx[3];
+    			add_location(button1, file$3, 89, 1, 2823);
     			attr_dev(div4, "class", "container svelte-3aywy4");
-    			add_location(div4, file$3, 58, 0, 1684);
+    			add_location(div4, file$3, 64, 0, 1802);
     		},
     		l: function claim(nodes) {
     			throw new Error_1$1("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -748,7 +747,7 @@ var app = (function () {
     			append_dev(div0, label0);
     			append_dev(div0, t1);
     			append_dev(div0, input0);
-    			set_input_value(input0, /*username*/ ctx[3]);
+    			set_input_value(input0, /*username*/ ctx[4]);
     			append_dev(div0, br0);
     			append_dev(form, t2);
     			append_dev(form, div1);
@@ -784,29 +783,29 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[7]),
-    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[8]),
-    					listen_dev(select, "change", /*select_change_handler*/ ctx[9]),
-    					listen_dev(form, "submit", prevent_default(/*onSubmit*/ ctx[4]), false, true, false),
-    					listen_dev(button0, "click", /*onSubmit*/ ctx[4], false, false, false),
-    					listen_dev(textarea, "input", /*textarea_input_handler*/ ctx[10]),
-    					listen_dev(button1, "click", /*onNext*/ ctx[5], false, false, false)
+    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[8]),
+    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[9]),
+    					listen_dev(select, "change", /*select_change_handler*/ ctx[10]),
+    					listen_dev(form, "submit", prevent_default(/*onSubmit*/ ctx[5]), false, true, false),
+    					listen_dev(button0, "click", /*onSubmit*/ ctx[5], false, false, false),
+    					listen_dev(textarea, "input", /*textarea_input_handler*/ ctx[11]),
+    					listen_dev(button1, "click", /*onNext*/ ctx[6], false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*username*/ 8 && input0.value !== /*username*/ ctx[3]) {
-    				set_input_value(input0, /*username*/ ctx[3]);
+    			if (dirty & /*username*/ 16 && input0.value !== /*username*/ ctx[4]) {
+    				set_input_value(input0, /*username*/ ctx[4]);
     			}
 
     			if (dirty & /*limit*/ 2 && to_number(input1.value) !== /*limit*/ ctx[1]) {
     				set_input_value(input1, /*limit*/ ctx[1]);
     			}
 
-    			if (dirty & /*period*/ 64) {
-    				each_value = /*period*/ ctx[6];
+    			if (dirty & /*period*/ 128) {
+    				each_value = /*period*/ ctx[7];
     				validate_each_argument(each_value);
     				let i;
 
@@ -829,11 +828,11 @@ var app = (function () {
     				each_blocks.length = each_value.length;
     			}
 
-    			if (dirty & /*chosenPeriod, period*/ 65) {
+    			if (dirty & /*chosenPeriod, period*/ 129) {
     				select_option(select, /*chosenPeriod*/ ctx[0]);
     			}
 
-    			if (dirty & /*username*/ 8 && button0_disbaled_value !== (button0_disbaled_value = /*username*/ ctx[3] = "")) {
+    			if (dirty & /*username*/ 16 && button0_disbaled_value !== (button0_disbaled_value = /*username*/ ctx[4] = "")) {
     				attr_dev(button0, "disbaled", button0_disbaled_value);
     			}
 
@@ -841,8 +840,8 @@ var app = (function () {
     				set_input_value(textarea, /*output*/ ctx[2]);
     			}
 
-    			if (dirty & /*output*/ 4 && button1_disabled_value !== (button1_disabled_value = /*output*/ ctx[2] == "")) {
-    				prop_dev(button1, "disabled", button1_disabled_value);
+    			if (dirty & /*nextButtonDisabled*/ 8) {
+    				prop_dev(button1, "disabled", /*nextButtonDisabled*/ ctx[3]);
     			}
     		},
     		i: noop,
@@ -872,7 +871,7 @@ var app = (function () {
     	let username;
     	let $trackdata;
     	validate_store(trackdata, 'trackdata');
-    	component_subscribe($$self, trackdata, $$value => $$invalidate(12, $trackdata = $$value));
+    	component_subscribe($$self, trackdata, $$value => $$invalidate(13, $trackdata = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('LfmForm', slots, []);
     	const period = ["overall", "7day", "1month", "3month", "6month", "12month"];
@@ -880,6 +879,7 @@ var app = (function () {
     	let limit = 20;
     	let __trackdata;
     	let output = "";
+    	let nextButtonDisabled = true;
 
     	async function onSubmit() {
     		console.log("username: ", username);
@@ -899,7 +899,13 @@ var app = (function () {
     			$$invalidate(2, output += __trackdata[i].name + "\r\n");
     		}
 
-    		if (output == "") $$invalidate(2, output = "It seems there are no songs available for the selected username and/or time period.");
+    		if (output == "") {
+    			$$invalidate(2, output = "It seems there are no songs available for the selected username and/or time period.");
+    			$$invalidate(3, nextButtonDisabled = true);
+    			return;
+    		}
+
+    		$$invalidate(3, nextButtonDisabled = false);
     	}
 
     	function onNext() {
@@ -937,7 +943,7 @@ var app = (function () {
 
     	function input0_input_handler() {
     		username = this.value;
-    		$$invalidate(3, username);
+    		$$invalidate(4, username);
     	}
 
     	function input1_input_handler() {
@@ -948,7 +954,7 @@ var app = (function () {
     	function select_change_handler() {
     		chosenPeriod = select_value(this);
     		$$invalidate(0, chosenPeriod);
-    		$$invalidate(6, period);
+    		$$invalidate(7, period);
     	}
 
     	function textarea_input_handler() {
@@ -967,6 +973,7 @@ var app = (function () {
     		apiKey,
     		__trackdata,
     		output,
+    		nextButtonDisabled,
     		onSubmit,
     		onNext,
     		fetchLfmData,
@@ -979,19 +986,21 @@ var app = (function () {
     		if ('limit' in $$props) $$invalidate(1, limit = $$props.limit);
     		if ('__trackdata' in $$props) __trackdata = $$props.__trackdata;
     		if ('output' in $$props) $$invalidate(2, output = $$props.output);
-    		if ('username' in $$props) $$invalidate(3, username = $$props.username);
+    		if ('nextButtonDisabled' in $$props) $$invalidate(3, nextButtonDisabled = $$props.nextButtonDisabled);
+    		if ('username' in $$props) $$invalidate(4, username = $$props.username);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	$$invalidate(3, username = "");
+    	$$invalidate(4, username = "");
 
     	return [
     		chosenPeriod,
     		limit,
     		output,
+    		nextButtonDisabled,
     		username,
     		onSubmit,
     		onNext,

@@ -7,6 +7,7 @@
 	const apiKey = "57411198178c595fbb09fabbe83934ac";
 	let __trackdata;
 	let output = "";
+	let nextButtonDisabled = true;
 
 	async function onSubmit() {
 		console.log("username: ", username);
@@ -25,7 +26,12 @@
 			output += __trackdata[i].name + "\r\n";
 		}
 
-		if (output=="") output = "It seems there are no songs available for the selected username and/or time period.";
+		if (output=="") {
+			output = "It seems there are no songs available for the selected username and/or time period.";
+			nextButtonDisabled = true;
+			return;
+		}
+		nextButtonDisabled = false;
 	}
 
 	function onNext() {
@@ -59,15 +65,15 @@
 <div class="container">
 	<form class="item-form" on:submit|preventDefault={onSubmit}>
 	<div>
-		<label class="form-label" for="username">last.fm username</label>
+		<label class="form-label" for="username">last.fm Username</label>
 		<input class="form-input" name="username" type=text bind:value={username}><br>
 	</div>
 	<div>
-		<label class="form-label" for="limit">track limit</label>
+		<label class="form-label" for="limit">Track Limit</label>
 		<input class="form-input" name="limit" type=number bind:value={limit} min=1 max=100><br>
 	</div>
 	<div>
-	<label class="form-label" for="period">time period</label>
+	<label class="form-label" for="period">Time Period</label>
 		<select class="form-input" name="period" bind:value={chosenPeriod}>
 			{#each period as period}
 				<option>{period}</option>
@@ -78,10 +84,10 @@
 	<button class="pure-button-primary" id="submit-button" disbaled={username = ""} on:click={onSubmit}>Get Data</button>
 	
 	<div class="item-output">
-		<label for="output" class=form-label>songs retrieved from last.fm</label>
+		<label for="output" class=form-label>Songs retrieved from last.fm</label>
 		<textarea readonly id="song-output" name="song-output" rows=limit cols=50 bind:value={output}></textarea>
 	</div>
-	<button class="pure-button-primary" id="next-button" disabled={output == ""} on:click={onNext}>Next</button>
+	<button class="pure-button-primary" id="next-button" disabled={nextButtonDisabled} on:click={onNext}>Next</button>
 </div>
 <style>
 	.container {
