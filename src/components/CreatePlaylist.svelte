@@ -3,6 +3,7 @@
     let playlistName = "last.fm top " + $trackdata.length;
     let playlistDesc = "";
     let playlistScope = true; // true: public, false: private
+    let playlistLink = "";
     let user_id;
     let playlistInfo;
     let message = "";
@@ -74,7 +75,6 @@
             throw new Error("Track not found - skipping")
         })
         .then(data => {
-            // console.log(data);
             console.log("track_id found: ", data.tracks.items[0].uri);
             id = data.tracks.items[0].uri;
 		})
@@ -124,6 +124,7 @@
             message = "Oh no, something went wrong!";
         });
 
+        playlistLink = playlistInfo.external_urls.spotify;
         message = "Success!";
     }
 
@@ -135,15 +136,24 @@
 
     <label class="label" for="playlist-desc">Description</label>
     <input class="input" name="playlist-desc" type=text bind:value={playlistDesc}><br>
-
-    <div class="pure-button-group" role="group">
+    
+    <label for="playlist-scope" class="label">Visibility</label>
+    <div name="playlist-scope" class="pure-button-group" role="group">
         <button id="public-button" class="toggle-button" class:active={playlistScope} on:click="{() => playlistScope = !playlistScope}">Public</button>
         <button id="private-button" class="toggle-button" class:active={!playlistScope} on:click="{() => playlistScope = !playlistScope}">Private</button>
     </div>
 
-    <button class="pure-button-primary" on:click|once={createPlaylist}>Create Playlist <i class="fa-brands fa-spotify"></i></button> 
+    <button class="pure-button-primary" on:click|once={createPlaylist}>Create Playlist <i class="fa-brands fa-spotify"></i></button>
 
-    <p>{message}</p>
+    <p style="margin: 10px 0 10px 0;">{message}</p>
+
+    {#if playlistLink != ""}
+    <div class="playlist-link">
+        <label for="playlist-link" class="label">Playlist Link</label>
+        <input name="playlist-link" type="text" class="input" bind:value={playlistLink}><br>
+        <a href={playlistLink}><button class="pure-button-primary" href={playlistLink}>Open Playlist <i class="fa-brands fa-spotify"></i></button></a>
+    </div>
+    {/if}
 </div>
 <style>
     .container {
@@ -170,7 +180,7 @@
 		width: 15rem;
 	}
     .pure-button-group {
-        margin: 20px 0 10px 0;
+        margin: 0 0 10px 0;
         justify-content: stretch;
         border-radius: 12px;
         width: 15rem;
