@@ -5,7 +5,8 @@ html, body {
 }
 
 body {
-	color: #333;
+	background-color: #1e1e1e;
+	color: #ffffff;
 	margin: 0;
 	padding: 8px;
 	box-sizing: border-box;
@@ -29,14 +30,43 @@ label {
 	display: block;
 }
 
-input, button, select, textarea {
+input, select, textarea {
+	font-family: inherit;
+	font-size: inherit;
+	color: inherit; 
+	-webkit-padding: 0.4em 0;
+	padding: 0.4em;
+	margin: 0 0 0.5em 0;
+	box-sizing: border-box;
+	/* border: 1px solid #ccc; */
+	border: none;
+	border-radius: 8px;
+	background: #444444;
+}
+
+input:focus, select:focus, textarea:focus {
+	border: none;
+}
+
+input[type="number"] {
+	-webkit-appearance: textfield;
+	   -moz-appearance: textfield;
+			appearance: textfield;
+  }
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+	-webkit-appearance: none;
+  }
+
+button {
 	font-family: inherit;
 	font-size: inherit;
 	-webkit-padding: 0.4em 0;
 	padding: 0.4em;
 	margin: 0 0 0.5em 0;
 	box-sizing: border-box;
-	border: 1px solid #ccc;
+	/* border: 1px solid #ccc; */
+	border: none;
 	border-radius: 2px;
 }
 
@@ -52,6 +82,7 @@ button {
 
 button:disabled {
 	color: #999;
+	background-color: #00509a;
 }
 
 button:not(:disabled):active {
