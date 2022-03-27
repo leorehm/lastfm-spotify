@@ -16,8 +16,9 @@ export const token = readable(null, function start(set) {
 })
 
 export const appUrl = readable(null, function start(set) {
-  set("https://leorehm.github.io/lastfm-spotify");
+  // set("https://leorehm.github.io/lastfm-spotify");
   // set("http://localhost:8080/");
+  set(process.env.SPOTIFY_CALLBACK_URL);
 })
 
 export const timeRange = writable('medium_term');
