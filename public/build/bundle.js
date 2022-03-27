@@ -541,8 +541,8 @@ var app = (function () {
     });
 
     const appUrl = readable(null, function start(set) {
-      set("https://leorehm.github.io/lastfm-spotify");
-      // set("http://localhost:8080/");
+      // set("https://leorehm.github.io/lastfm-spotify");
+      set("http://localhost:8080/");
     });
 
     const timeRange = writable('medium_term');
@@ -1014,25 +1014,25 @@ var app = (function () {
     			t4 = space();
     			input = element("input");
     			attr_dev(button, "class", "login-btn svelte-181gumj");
-    			add_location(button, file$2, 34, 6, 1044);
+    			add_location(button, file$2, 34, 6, 1078);
     			attr_dev(a, "href", /*loginLink*/ ctx[2]);
-    			add_location(a, file$2, 33, 4, 1017);
-    			add_location(br, file$2, 36, 4, 1111);
+    			add_location(a, file$2, 33, 4, 1050);
+    			add_location(br, file$2, 36, 4, 1147);
     			attr_dev(label, "id", "checkbox-text");
     			attr_dev(label, "for", "remember-me");
     			attr_dev(label, "class", "svelte-181gumj");
-    			add_location(label, file$2, 38, 6, 1158);
+    			add_location(label, file$2, 38, 6, 1196);
     			attr_dev(input, "id", "checkbox-box");
     			attr_dev(input, "name", "remember-me");
     			attr_dev(input, "type", "checkbox");
     			attr_dev(input, "class", "svelte-181gumj");
-    			add_location(input, file$2, 39, 6, 1229);
+    			add_location(input, file$2, 39, 6, 1268);
     			attr_dev(div0, "id", "checkbox-container");
     			attr_dev(div0, "class", "svelte-181gumj");
-    			add_location(div0, file$2, 37, 4, 1122);
+    			add_location(div0, file$2, 37, 4, 1159);
     			attr_dev(div1, "id", "login");
     			attr_dev(div1, "class", "svelte-181gumj");
-    			add_location(div1, file$2, 32, 2, 996);
+    			add_location(div1, file$2, 32, 2, 1028);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div1, anchor);
@@ -1096,12 +1096,12 @@ var app = (function () {
     			a = element("a");
     			button = element("button");
     			button.textContent = "Logout";
-    			add_location(p, file$2, 51, 4, 1441);
-    			add_location(button, file$2, 53, 6, 1530);
+    			add_location(p, file$2, 51, 4, 1492);
+    			add_location(button, file$2, 53, 6, 1583);
     			attr_dev(a, "href", /*$appUrl*/ ctx[1]);
-    			add_location(a, file$2, 52, 4, 1505);
+    			add_location(a, file$2, 52, 4, 1557);
     			attr_dev(section, "class", "expired-token");
-    			add_location(section, file$2, 50, 2, 1405);
+    			add_location(section, file$2, 50, 2, 1455);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, section, anchor);
