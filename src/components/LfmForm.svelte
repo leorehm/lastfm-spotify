@@ -81,14 +81,6 @@
 		align-items: center;
 		align-content: center;
 	}
-	.item-form {
-		/* display: grid;
-		grid-template-rows: 1fr 1fr;
-		grid-row: 1		 */
-	}
-	.item-output {
-		/* grid-row: 2; */
-	}
 	.form-label {
 		margin: 10px 0 10px 0;
 		font-weight: bold;
