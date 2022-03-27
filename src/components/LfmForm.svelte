@@ -81,7 +81,7 @@
 		</select><br>
 	</div>
 	</form>
-	<button class="pure-button-primary" id="submit-button" disbaled={username = ""} on:click={onSubmit}>Get Data</button>
+	<button class="pure-button-primary" id="submit-button" disbaled={username = ""} on:click={onSubmit}>Get Data <i class="fa-brands fa-lastfm"></i></button>
 	
 	<div class="item-output">
 		<label for="output" class=form-label>Songs retrieved from last.fm</label>
