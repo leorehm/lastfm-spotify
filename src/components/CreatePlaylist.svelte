@@ -89,9 +89,17 @@
         message = "Please wait: Getting songs...";
 
         // get all song ids
-        const ids = []
-        for (let i = 0; i<$trackdata.length; i++) {
-            ids.push(await getSongId($trackdata[i].name, $trackdata[i].artist.name))
+        // group ids in arrays with length of 100 to comply with spotify api
+
+        const indexesNeeded = Math.floor($trackdata.length/100) //counting from 0
+        const ids = new Array(Math.floor(indexesNeeded));
+        for (let i = 0; i <= indexesNeeded; i++) {
+            ids[i] = [];
+        }
+
+        for (let i = 0; i < $trackdata.length; i++) {
+            let j = Math.floor(i/100);
+            ids[j].push(await getSongId($trackdata[i].name, $trackdata[i].artist.name));
         }
         // console.log("finished getting track ids:", ids);
         
@@ -101,28 +109,30 @@
         const accessToken = $token;
         const url = `https://api.spotify.com/v1/playlists/${playlistInfo.id}/tracks`
 
-        const res = await fetch(url, {
-            method: 'POST',
-            headers: {
-                Authorization: "Bearer " + accessToken,
-            },
-            body: JSON.stringify({
-                uris: ids,
+        for (let i = 0; i < ids.length; i++) {
+            const res = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    Authorization: "Bearer " + accessToken,
+                },
+                body: JSON.stringify({
+                    uris: ids[i],
+                })
             })
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json()
-            }
-            throw new Error("Adding to playlist not successful");
-        })
-        .then(data => {
-            console.log('add to playlist RESPONSE: ', data);
-		})
-        .catch(error => {
-            console.log(error);
-            message = "Oh no, something went wrong!";
-        });
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw new Error("Adding to playlist not successful");
+            })
+            .then(data => {
+                console.log('add to playlist RESPONSE: ', data);
+            })
+            .catch(error => {
+                console.log(error);
+                message = "Oh no, something went wrong!";
+            });
+        }
 
         playlistLink = playlistInfo.external_urls.spotify;
         message = "Success!";
