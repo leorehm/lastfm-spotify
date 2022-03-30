@@ -7,6 +7,7 @@
     let user_id;
     let playlistInfo;
     let message = "";
+    const spotInsertRest = 100; // spotify restriction of only 100 songs per insertion
 
     async function getUser() {
         message = "Please wait: getting user data...";
@@ -89,16 +90,16 @@
         message = "Please wait: Getting songs...";
 
         // get all song ids
-        // group ids in arrays with length of 100 to comply with spotify api
+        // group ids in arrays with length of spotInsertRest to comply with spotify api
 
-        const indexesNeeded = Math.floor($trackdata.length/100) //counting from 0
+        const indexesNeeded = Math.floor($trackdata.length/spotInsertRest) //counting from 0
         const ids = new Array(Math.floor(indexesNeeded));
         for (let i = 0; i <= indexesNeeded; i++) {
             ids[i] = [];
         }
 
         for (let i = 0; i < $trackdata.length; i++) {
-            let j = Math.floor(i/100);
+            let j = Math.floor(i/spotInsertRest);
             ids[j].push(await getSongId($trackdata[i].name, $trackdata[i].artist.name));
         }
         // console.log("finished getting track ids:", ids);

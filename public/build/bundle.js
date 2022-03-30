@@ -1368,7 +1368,7 @@ var app = (function () {
     const { Error: Error_1, console: console_1 } = globals;
     const file$1 = "src/components/CreatePlaylist.svelte";
 
-    // (160:4) {#if playlistLink != ""}
+    // (161:4) {#if playlistLink != ""}
     function create_if_block$1(ctx) {
     	let div;
     	let label;
@@ -1398,21 +1398,21 @@ var app = (function () {
     			i = element("i");
     			attr_dev(label, "for", "playlist-link");
     			attr_dev(label, "class", "label svelte-cudkfm");
-    			add_location(label, file$1, 161, 8, 5688);
+    			add_location(label, file$1, 162, 8, 5808);
     			attr_dev(input, "name", "playlist-link");
     			attr_dev(input, "type", "text");
     			attr_dev(input, "class", "input svelte-cudkfm");
-    			add_location(input, file$1, 162, 8, 5759);
-    			add_location(br, file$1, 162, 88, 5839);
+    			add_location(input, file$1, 163, 8, 5879);
+    			add_location(br, file$1, 163, 88, 5959);
     			attr_dev(i, "class", "fa-brands fa-spotify");
-    			add_location(i, file$1, 163, 101, 5945);
+    			add_location(i, file$1, 164, 101, 6065);
     			attr_dev(button, "class", "pure-button-primary svelte-cudkfm");
     			attr_dev(button, "href", /*playlistLink*/ ctx[3]);
-    			add_location(button, file$1, 163, 31, 5875);
+    			add_location(button, file$1, 164, 31, 5995);
     			attr_dev(a, "href", /*playlistLink*/ ctx[3]);
-    			add_location(a, file$1, 163, 8, 5852);
+    			add_location(a, file$1, 164, 8, 5972);
     			attr_dev(div, "class", "playlist-link");
-    			add_location(div, file$1, 160, 4, 5652);
+    			add_location(div, file$1, 161, 4, 5772);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1456,7 +1456,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(160:4) {#if playlistLink != \\\"\\\"}",
+    		source: "(161:4) {#if playlistLink != \\\"\\\"}",
     		ctx
     	});
 
@@ -1528,43 +1528,43 @@ var app = (function () {
     			if (if_block) if_block.c();
     			attr_dev(label0, "class", "label svelte-cudkfm");
     			attr_dev(label0, "for", "playlist-name");
-    			add_location(label0, file$1, 143, 4, 4669);
+    			add_location(label0, file$1, 144, 4, 4789);
     			attr_dev(input0, "class", "input svelte-cudkfm");
     			attr_dev(input0, "name", "playlist-name");
     			attr_dev(input0, "type", "text");
-    			add_location(input0, file$1, 144, 4, 4736);
-    			add_location(br0, file$1, 144, 82, 4814);
+    			add_location(input0, file$1, 145, 4, 4856);
+    			add_location(br0, file$1, 145, 82, 4934);
     			attr_dev(label1, "class", "label svelte-cudkfm");
     			attr_dev(label1, "for", "playlist-desc");
-    			add_location(label1, file$1, 146, 4, 4824);
+    			add_location(label1, file$1, 147, 4, 4944);
     			attr_dev(input1, "class", "input svelte-cudkfm");
     			attr_dev(input1, "name", "playlist-desc");
     			attr_dev(input1, "type", "text");
-    			add_location(input1, file$1, 147, 4, 4889);
-    			add_location(br1, file$1, 147, 82, 4967);
+    			add_location(input1, file$1, 148, 4, 5009);
+    			add_location(br1, file$1, 148, 82, 5087);
     			attr_dev(label2, "for", "playlist-scope");
     			attr_dev(label2, "class", "label svelte-cudkfm");
-    			add_location(label2, file$1, 149, 4, 4981);
+    			add_location(label2, file$1, 150, 4, 5101);
     			attr_dev(button0, "id", "public-button");
     			attr_dev(button0, "class", "toggle-button svelte-cudkfm");
     			toggle_class(button0, "active", /*playlistScope*/ ctx[2]);
-    			add_location(button0, file$1, 151, 8, 5121);
+    			add_location(button0, file$1, 152, 8, 5241);
     			attr_dev(button1, "id", "private-button");
     			attr_dev(button1, "class", "toggle-button svelte-cudkfm");
     			toggle_class(button1, "active", !/*playlistScope*/ ctx[2]);
-    			add_location(button1, file$1, 152, 8, 5273);
+    			add_location(button1, file$1, 153, 8, 5393);
     			attr_dev(div0, "name", "playlist-scope");
     			attr_dev(div0, "class", "pure-button-group svelte-cudkfm");
     			attr_dev(div0, "role", "group");
-    			add_location(div0, file$1, 150, 4, 5046);
+    			add_location(div0, file$1, 151, 4, 5166);
     			attr_dev(i, "class", "fa-brands fa-spotify");
-    			add_location(i, file$1, 155, 87, 5519);
+    			add_location(i, file$1, 156, 87, 5639);
     			attr_dev(button2, "class", "pure-button-primary svelte-cudkfm");
-    			add_location(button2, file$1, 155, 4, 5436);
+    			add_location(button2, file$1, 156, 4, 5556);
     			set_style(p, "margin", "10px 0 10px 0");
-    			add_location(p, file$1, 157, 4, 5570);
+    			add_location(p, file$1, 158, 4, 5690);
     			attr_dev(div1, "class", "container svelte-cudkfm");
-    			add_location(div1, file$1, 141, 4, 4640);
+    			add_location(div1, file$1, 142, 4, 4760);
     		},
     		l: function claim(nodes) {
     			throw new Error_1("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1664,6 +1664,8 @@ var app = (function () {
     	return block;
     }
 
+    const spotInsertRest = 100; // spotify restriction of only 100 songs per insertion
+
     function instance$1($$self, $$props, $$invalidate) {
     	let $token;
     	let $trackdata;
@@ -1754,8 +1756,8 @@ var app = (function () {
     		$$invalidate(4, message = "Please wait: Getting songs...");
 
     		// get all song ids
-    		// group ids in arrays with length of 100 to comply with spotify api
-    		const indexesNeeded = Math.floor($trackdata.length / 100); //counting from 0
+    		// group ids in arrays with length of spotInsertRest to comply with spotify api
+    		const indexesNeeded = Math.floor($trackdata.length / spotInsertRest); //counting from 0
 
     		const ids = new Array(Math.floor(indexesNeeded));
 
@@ -1764,7 +1766,7 @@ var app = (function () {
     		}
 
     		for (let i = 0; i < $trackdata.length; i++) {
-    			let j = Math.floor(i / 100);
+    			let j = Math.floor(i / spotInsertRest);
     			ids[j].push(await getSongId($trackdata[i].name, $trackdata[i].artist.name));
     		}
 
@@ -1834,6 +1836,7 @@ var app = (function () {
     		user_id,
     		playlistInfo,
     		message,
+    		spotInsertRest,
     		getUser,
     		createPlaylist,
     		getSongId,
