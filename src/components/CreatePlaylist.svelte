@@ -7,6 +7,7 @@
     let user_id;
     let playlistInfo;
     let message = "";
+    const spotInsertRest = 100; // spotify restriction of only 100 songs per insertion
 
     async function getUser() {
         message = "Please wait: getting user data...";
@@ -70,16 +71,22 @@
         })
         .then(response => {
             if (response.ok) {
-                return response.json()
+                return response.json();
             }
-            throw new Error("Track not found - skipping")
+            throw new Error("Track '" + track + "' not found - skipping");
         })
         .then(data => {
-            console.log("track_id found: ", data.tracks.items[0].uri);
-            id = data.tracks.items[0].uri;
+            if (data.tracks.items.length == 0) {
+                throw new Error("Track '" + track + "'' not found - skipping");
+            }
+            else {
+                console.log("track_id found: ", data.tracks.items[0].uri);
+                id = data.tracks.items[0].uri;
+            }
 		})
         .catch(error => {
             console.log(error);
+            id = null;
         });
         return id;
     }
@@ -89,9 +96,21 @@
         message = "Please wait: Getting songs...";
 
         // get all song ids
-        const ids = []
-        for (let i = 0; i<$trackdata.length; i++) {
-            ids.push(await getSongId($trackdata[i].name, $trackdata[i].artist.name))
+        // group ids in arrays with length of spotInsertRest to comply with spotify api
+
+        const indexesNeeded = Math.floor($trackdata.length/spotInsertRest) //counting from 0
+        const ids = new Array(Math.floor(indexesNeeded));
+        for (let i = 0; i <= indexesNeeded; i++) {
+            ids[i] = [];
+        }
+
+        for (let i = 0; i < $trackdata.length; i++) {
+            let j = Math.floor(i/spotInsertRest);
+            let songId = await getSongId($trackdata[i].name, $trackdata[i].artist.name);
+            // prevents adding a song with an empty id, which would cause the whole api-call to fail
+            if (songId != null) {
+                ids[j].push(songId);
+            }
         }
         // console.log("finished getting track ids:", ids);
         
@@ -101,28 +120,30 @@
         const accessToken = $token;
         const url = `https://api.spotify.com/v1/playlists/${playlistInfo.id}/tracks`
 
-        const res = await fetch(url, {
-            method: 'POST',
-            headers: {
-                Authorization: "Bearer " + accessToken,
-            },
-            body: JSON.stringify({
-                uris: ids,
+        for (let i = 0; i < ids.length; i++) {
+            const res = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    Authorization: "Bearer " + accessToken,
+                },
+                body: JSON.stringify({
+                    uris: ids[i],
+                })
             })
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json()
-            }
-            throw new Error("Adding to playlist not successful");
-        })
-        .then(data => {
-            console.log('add to playlist RESPONSE: ', data);
-		})
-        .catch(error => {
-            console.log(error);
-            message = "Oh no, something went wrong!";
-        });
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                throw new Error("Adding to playlist not successful");
+            })
+            .then(data => {
+                console.log('add to playlist RESPONSE: ', data);
+            })
+            .catch(error => {
+                console.log(error);
+                message = "Oh no, something went wrong!";
+            });
+        }
 
         playlistLink = playlistInfo.external_urls.spotify;
         message = "Success!";
