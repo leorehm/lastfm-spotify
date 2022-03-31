@@ -1368,7 +1368,7 @@ var app = (function () {
     const { Error: Error_1, console: console_1 } = globals;
     const file$1 = "src/components/CreatePlaylist.svelte";
 
-    // (150:4) {#if playlistLink != ""}
+    // (171:4) {#if playlistLink != ""}
     function create_if_block$1(ctx) {
     	let div;
     	let label;
@@ -1398,21 +1398,21 @@ var app = (function () {
     			i = element("i");
     			attr_dev(label, "for", "playlist-link");
     			attr_dev(label, "class", "label svelte-cudkfm");
-    			add_location(label, file$1, 151, 8, 5207);
+    			add_location(label, file$1, 172, 8, 6219);
     			attr_dev(input, "name", "playlist-link");
     			attr_dev(input, "type", "text");
     			attr_dev(input, "class", "input svelte-cudkfm");
-    			add_location(input, file$1, 152, 8, 5278);
-    			add_location(br, file$1, 152, 88, 5358);
+    			add_location(input, file$1, 173, 8, 6290);
+    			add_location(br, file$1, 173, 88, 6370);
     			attr_dev(i, "class", "fa-brands fa-spotify");
-    			add_location(i, file$1, 153, 101, 5464);
+    			add_location(i, file$1, 174, 101, 6476);
     			attr_dev(button, "class", "pure-button-primary svelte-cudkfm");
     			attr_dev(button, "href", /*playlistLink*/ ctx[3]);
-    			add_location(button, file$1, 153, 31, 5394);
+    			add_location(button, file$1, 174, 31, 6406);
     			attr_dev(a, "href", /*playlistLink*/ ctx[3]);
-    			add_location(a, file$1, 153, 8, 5371);
+    			add_location(a, file$1, 174, 8, 6383);
     			attr_dev(div, "class", "playlist-link");
-    			add_location(div, file$1, 150, 4, 5171);
+    			add_location(div, file$1, 171, 4, 6183);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1456,7 +1456,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(150:4) {#if playlistLink != \\\"\\\"}",
+    		source: "(171:4) {#if playlistLink != \\\"\\\"}",
     		ctx
     	});
 
@@ -1528,43 +1528,43 @@ var app = (function () {
     			if (if_block) if_block.c();
     			attr_dev(label0, "class", "label svelte-cudkfm");
     			attr_dev(label0, "for", "playlist-name");
-    			add_location(label0, file$1, 133, 4, 4188);
+    			add_location(label0, file$1, 154, 4, 5200);
     			attr_dev(input0, "class", "input svelte-cudkfm");
     			attr_dev(input0, "name", "playlist-name");
     			attr_dev(input0, "type", "text");
-    			add_location(input0, file$1, 134, 4, 4255);
-    			add_location(br0, file$1, 134, 82, 4333);
+    			add_location(input0, file$1, 155, 4, 5267);
+    			add_location(br0, file$1, 155, 82, 5345);
     			attr_dev(label1, "class", "label svelte-cudkfm");
     			attr_dev(label1, "for", "playlist-desc");
-    			add_location(label1, file$1, 136, 4, 4343);
+    			add_location(label1, file$1, 157, 4, 5355);
     			attr_dev(input1, "class", "input svelte-cudkfm");
     			attr_dev(input1, "name", "playlist-desc");
     			attr_dev(input1, "type", "text");
-    			add_location(input1, file$1, 137, 4, 4408);
-    			add_location(br1, file$1, 137, 82, 4486);
+    			add_location(input1, file$1, 158, 4, 5420);
+    			add_location(br1, file$1, 158, 82, 5498);
     			attr_dev(label2, "for", "playlist-scope");
     			attr_dev(label2, "class", "label svelte-cudkfm");
-    			add_location(label2, file$1, 139, 4, 4500);
+    			add_location(label2, file$1, 160, 4, 5512);
     			attr_dev(button0, "id", "public-button");
     			attr_dev(button0, "class", "toggle-button svelte-cudkfm");
     			toggle_class(button0, "active", /*playlistScope*/ ctx[2]);
-    			add_location(button0, file$1, 141, 8, 4640);
+    			add_location(button0, file$1, 162, 8, 5652);
     			attr_dev(button1, "id", "private-button");
     			attr_dev(button1, "class", "toggle-button svelte-cudkfm");
     			toggle_class(button1, "active", !/*playlistScope*/ ctx[2]);
-    			add_location(button1, file$1, 142, 8, 4792);
+    			add_location(button1, file$1, 163, 8, 5804);
     			attr_dev(div0, "name", "playlist-scope");
     			attr_dev(div0, "class", "pure-button-group svelte-cudkfm");
     			attr_dev(div0, "role", "group");
-    			add_location(div0, file$1, 140, 4, 4565);
+    			add_location(div0, file$1, 161, 4, 5577);
     			attr_dev(i, "class", "fa-brands fa-spotify");
-    			add_location(i, file$1, 145, 87, 5038);
+    			add_location(i, file$1, 166, 87, 6050);
     			attr_dev(button2, "class", "pure-button-primary svelte-cudkfm");
-    			add_location(button2, file$1, 145, 4, 4955);
+    			add_location(button2, file$1, 166, 4, 5967);
     			set_style(p, "margin", "10px 0 10px 0");
-    			add_location(p, file$1, 147, 4, 5089);
+    			add_location(p, file$1, 168, 4, 6101);
     			attr_dev(div1, "class", "container svelte-cudkfm");
-    			add_location(div1, file$1, 131, 4, 4159);
+    			add_location(div1, file$1, 152, 4, 5171);
     		},
     		l: function claim(nodes) {
     			throw new Error_1("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1664,6 +1664,8 @@ var app = (function () {
     	return block;
     }
 
+    const spotInsertRest = 100; // spotify restriction of only 100 songs per insertion
+
     function instance$1($$self, $$props, $$invalidate) {
     	let $token;
     	let $trackdata;
@@ -1738,12 +1740,17 @@ var app = (function () {
     				return response.json();
     			}
 
-    			throw new Error("Track not found - skipping");
+    			throw new Error("Track '" + track + "' not found - skipping");
     		}).then(data => {
-    			console.log("track_id found: ", data.tracks.items[0].uri);
-    			id = data.tracks.items[0].uri;
+    			if (data.tracks.items.length == 0) {
+    				throw new Error("Track '" + track + "'' not found - skipping");
+    			} else {
+    				console.log("track_id found: ", data.tracks.items[0].uri);
+    				id = data.tracks.items[0].uri;
+    			}
     		}).catch(error => {
     			console.log(error);
+    			id = null;
     		});
 
     		return id;
@@ -1754,10 +1761,23 @@ var app = (function () {
     		$$invalidate(4, message = "Please wait: Getting songs...");
 
     		// get all song ids
-    		const ids = [];
+    		// group ids in arrays with length of spotInsertRest to comply with spotify api
+    		const indexesNeeded = Math.floor($trackdata.length / spotInsertRest); //counting from 0
+
+    		const ids = new Array(Math.floor(indexesNeeded));
+
+    		for (let i = 0; i <= indexesNeeded; i++) {
+    			ids[i] = [];
+    		}
 
     		for (let i = 0; i < $trackdata.length; i++) {
-    			ids.push(await getSongId($trackdata[i].name, $trackdata[i].artist.name));
+    			let j = Math.floor(i / spotInsertRest);
+    			let songId = await getSongId($trackdata[i].name, $trackdata[i].artist.name);
+
+    			// prevents adding a song with an empty id, which would cause the whole api-call to fail
+    			if (songId != null) {
+    				ids[j].push(songId);
+    			}
     		}
 
     		// console.log("finished getting track ids:", ids);
@@ -1767,22 +1787,24 @@ var app = (function () {
     		const accessToken = $token;
     		const url = `https://api.spotify.com/v1/playlists/${playlistInfo.id}/tracks`;
 
-    		await fetch(url, {
-    			method: 'POST',
-    			headers: { Authorization: "Bearer " + accessToken },
-    			body: JSON.stringify({ uris: ids })
-    		}).then(response => {
-    			if (response.ok) {
-    				return response.json();
-    			}
+    		for (let i = 0; i < ids.length; i++) {
+    			await fetch(url, {
+    				method: 'POST',
+    				headers: { Authorization: "Bearer " + accessToken },
+    				body: JSON.stringify({ uris: ids[i] })
+    			}).then(response => {
+    				if (response.ok) {
+    					return response.json();
+    				}
 
-    			throw new Error("Adding to playlist not successful");
-    		}).then(data => {
-    			console.log('add to playlist RESPONSE: ', data);
-    		}).catch(error => {
-    			console.log(error);
-    			$$invalidate(4, message = "Oh no, something went wrong!");
-    		});
+    				throw new Error("Adding to playlist not successful");
+    			}).then(data => {
+    				console.log('add to playlist RESPONSE: ', data);
+    			}).catch(error => {
+    				console.log(error);
+    				$$invalidate(4, message = "Oh no, something went wrong!");
+    			});
+    		}
 
     		$$invalidate(3, playlistLink = playlistInfo.external_urls.spotify);
     		$$invalidate(4, message = "Success!");
@@ -1824,6 +1846,7 @@ var app = (function () {
     		user_id,
     		playlistInfo,
     		message,
+    		spotInsertRest,
     		getUser,
     		createPlaylist,
     		getSongId,
