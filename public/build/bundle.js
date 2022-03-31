@@ -1368,7 +1368,7 @@ var app = (function () {
     const { Error: Error_1, console: console_1 } = globals;
     const file$1 = "src/components/CreatePlaylist.svelte";
 
-    // (161:4) {#if playlistLink != ""}
+    // (171:4) {#if playlistLink != ""}
     function create_if_block$1(ctx) {
     	let div;
     	let label;
@@ -1398,21 +1398,21 @@ var app = (function () {
     			i = element("i");
     			attr_dev(label, "for", "playlist-link");
     			attr_dev(label, "class", "label svelte-cudkfm");
-    			add_location(label, file$1, 162, 8, 5808);
+    			add_location(label, file$1, 172, 8, 6219);
     			attr_dev(input, "name", "playlist-link");
     			attr_dev(input, "type", "text");
     			attr_dev(input, "class", "input svelte-cudkfm");
-    			add_location(input, file$1, 163, 8, 5879);
-    			add_location(br, file$1, 163, 88, 5959);
+    			add_location(input, file$1, 173, 8, 6290);
+    			add_location(br, file$1, 173, 88, 6370);
     			attr_dev(i, "class", "fa-brands fa-spotify");
-    			add_location(i, file$1, 164, 101, 6065);
+    			add_location(i, file$1, 174, 101, 6476);
     			attr_dev(button, "class", "pure-button-primary svelte-cudkfm");
     			attr_dev(button, "href", /*playlistLink*/ ctx[3]);
-    			add_location(button, file$1, 164, 31, 5995);
+    			add_location(button, file$1, 174, 31, 6406);
     			attr_dev(a, "href", /*playlistLink*/ ctx[3]);
-    			add_location(a, file$1, 164, 8, 5972);
+    			add_location(a, file$1, 174, 8, 6383);
     			attr_dev(div, "class", "playlist-link");
-    			add_location(div, file$1, 161, 4, 5772);
+    			add_location(div, file$1, 171, 4, 6183);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1456,7 +1456,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(161:4) {#if playlistLink != \\\"\\\"}",
+    		source: "(171:4) {#if playlistLink != \\\"\\\"}",
     		ctx
     	});
 
@@ -1528,43 +1528,43 @@ var app = (function () {
     			if (if_block) if_block.c();
     			attr_dev(label0, "class", "label svelte-cudkfm");
     			attr_dev(label0, "for", "playlist-name");
-    			add_location(label0, file$1, 144, 4, 4789);
+    			add_location(label0, file$1, 154, 4, 5200);
     			attr_dev(input0, "class", "input svelte-cudkfm");
     			attr_dev(input0, "name", "playlist-name");
     			attr_dev(input0, "type", "text");
-    			add_location(input0, file$1, 145, 4, 4856);
-    			add_location(br0, file$1, 145, 82, 4934);
+    			add_location(input0, file$1, 155, 4, 5267);
+    			add_location(br0, file$1, 155, 82, 5345);
     			attr_dev(label1, "class", "label svelte-cudkfm");
     			attr_dev(label1, "for", "playlist-desc");
-    			add_location(label1, file$1, 147, 4, 4944);
+    			add_location(label1, file$1, 157, 4, 5355);
     			attr_dev(input1, "class", "input svelte-cudkfm");
     			attr_dev(input1, "name", "playlist-desc");
     			attr_dev(input1, "type", "text");
-    			add_location(input1, file$1, 148, 4, 5009);
-    			add_location(br1, file$1, 148, 82, 5087);
+    			add_location(input1, file$1, 158, 4, 5420);
+    			add_location(br1, file$1, 158, 82, 5498);
     			attr_dev(label2, "for", "playlist-scope");
     			attr_dev(label2, "class", "label svelte-cudkfm");
-    			add_location(label2, file$1, 150, 4, 5101);
+    			add_location(label2, file$1, 160, 4, 5512);
     			attr_dev(button0, "id", "public-button");
     			attr_dev(button0, "class", "toggle-button svelte-cudkfm");
     			toggle_class(button0, "active", /*playlistScope*/ ctx[2]);
-    			add_location(button0, file$1, 152, 8, 5241);
+    			add_location(button0, file$1, 162, 8, 5652);
     			attr_dev(button1, "id", "private-button");
     			attr_dev(button1, "class", "toggle-button svelte-cudkfm");
     			toggle_class(button1, "active", !/*playlistScope*/ ctx[2]);
-    			add_location(button1, file$1, 153, 8, 5393);
+    			add_location(button1, file$1, 163, 8, 5804);
     			attr_dev(div0, "name", "playlist-scope");
     			attr_dev(div0, "class", "pure-button-group svelte-cudkfm");
     			attr_dev(div0, "role", "group");
-    			add_location(div0, file$1, 151, 4, 5166);
+    			add_location(div0, file$1, 161, 4, 5577);
     			attr_dev(i, "class", "fa-brands fa-spotify");
-    			add_location(i, file$1, 156, 87, 5639);
+    			add_location(i, file$1, 166, 87, 6050);
     			attr_dev(button2, "class", "pure-button-primary svelte-cudkfm");
-    			add_location(button2, file$1, 156, 4, 5556);
+    			add_location(button2, file$1, 166, 4, 5967);
     			set_style(p, "margin", "10px 0 10px 0");
-    			add_location(p, file$1, 158, 4, 5690);
+    			add_location(p, file$1, 168, 4, 6101);
     			attr_dev(div1, "class", "container svelte-cudkfm");
-    			add_location(div1, file$1, 142, 4, 4760);
+    			add_location(div1, file$1, 152, 4, 5171);
     		},
     		l: function claim(nodes) {
     			throw new Error_1("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1740,12 +1740,17 @@ var app = (function () {
     				return response.json();
     			}
 
-    			throw new Error("Track not found - skipping");
+    			throw new Error("Track '" + track + "' not found - skipping");
     		}).then(data => {
-    			console.log("track_id found: ", data.tracks.items[0].uri);
-    			id = data.tracks.items[0].uri;
+    			if (data.tracks.items.length == 0) {
+    				throw new Error("Track '" + track + "'' not found - skipping");
+    			} else {
+    				console.log("track_id found: ", data.tracks.items[0].uri);
+    				id = data.tracks.items[0].uri;
+    			}
     		}).catch(error => {
     			console.log(error);
+    			id = null;
     		});
 
     		return id;
@@ -1767,7 +1772,12 @@ var app = (function () {
 
     		for (let i = 0; i < $trackdata.length; i++) {
     			let j = Math.floor(i / spotInsertRest);
-    			ids[j].push(await getSongId($trackdata[i].name, $trackdata[i].artist.name));
+    			let songId = await getSongId($trackdata[i].name, $trackdata[i].artist.name);
+
+    			// prevents adding a song with an empty id, which would cause the whole api-call to fail
+    			if (songId != null) {
+    				ids[j].push(songId);
+    			}
     		}
 
     		// console.log("finished getting track ids:", ids);

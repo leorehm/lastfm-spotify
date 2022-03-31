@@ -71,16 +71,22 @@
         })
         .then(response => {
             if (response.ok) {
-                return response.json()
+                return response.json();
             }
-            throw new Error("Track not found - skipping")
+            throw new Error("Track '" + track + "' not found - skipping");
         })
         .then(data => {
-            console.log("track_id found: ", data.tracks.items[0].uri);
-            id = data.tracks.items[0].uri;
+            if (data.tracks.items.length == 0) {
+                throw new Error("Track '" + track + "'' not found - skipping");
+            }
+            else {
+                console.log("track_id found: ", data.tracks.items[0].uri);
+                id = data.tracks.items[0].uri;
+            }
 		})
         .catch(error => {
             console.log(error);
+            id = null;
         });
         return id;
     }
@@ -100,7 +106,11 @@
 
         for (let i = 0; i < $trackdata.length; i++) {
             let j = Math.floor(i/spotInsertRest);
-            ids[j].push(await getSongId($trackdata[i].name, $trackdata[i].artist.name));
+            let songId = await getSongId($trackdata[i].name, $trackdata[i].artist.name);
+            // prevents adding a song with an empty id, which would cause the whole api-call to fail
+            if (songId != null) {
+                ids[j].push(songId);
+            }
         }
         // console.log("finished getting track ids:", ids);
         
