@@ -3,6 +3,7 @@
 	import SpotifyLogin from "./components/SpotifyLogin.svelte";
 	import CreatePlaylist from "./components/CreatePlaylist.svelte"
 	import { timeRange, token, tokenExpired, trackdata } from "./stores.js";
+
 </script>
 
 <div id="app">
