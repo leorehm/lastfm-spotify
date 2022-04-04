@@ -29,9 +29,10 @@ jobs:
       - name: Deploy to github-pages
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add -f --all public/build/
           git commit -m "build"
-          ls -R
           npm run deploy -- -u "github-actions-bot <support+actions@github.com>"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
