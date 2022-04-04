@@ -5,7 +5,7 @@
 	import { timeRange, token, tokenExpired, trackdata } from "./stores.js";
 </script>
 
-<h2 style="text-align: center">last.fm to spotify playlist.</h2>
+<h2 style="text-align: center">last.fm to spotify playlist</h2>
 
 {#if !$token || $tokenExpired}
 	<SpotifyLogin></SpotifyLogin>
