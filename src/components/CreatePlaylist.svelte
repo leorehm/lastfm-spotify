@@ -7,6 +7,8 @@
     let user_id;
     let playlistInfo;
     let message = "";
+    let failedTracksIndices = [];
+    let failedOutput = "";
     const spotInsertRest = 100; // spotify restriction of only 100 songs per insertion
 
     async function getUser() {
@@ -77,7 +79,7 @@
         })
         .then(data => {
             if (data.tracks.items.length == 0) {
-                throw new Error("Track '" + track + "'' not found - skipping");
+                throw new Error("Track '" + track + "' not found - skipping");
             }
             else {
                 console.log("track_id found: ", data.tracks.items[0].uri);
@@ -110,6 +112,9 @@
             // prevents adding a song with an empty id, which would cause the whole api-call to fail
             if (songId != null) {
                 ids[j].push(songId);
+            }
+            else {
+                failedTracksIndices.push(i);
             }
         }
         // console.log("finished getting track ids:", ids);
@@ -146,7 +151,22 @@
         }
 
         playlistLink = playlistInfo.external_urls.spotify;
-        message = "Success!";
+        if (failedTracksIndices.length == 0) {
+            message = "Success!";
+        }
+        else {
+            let plural = "";
+            if (failedTracksIndices.length > 1) {plural = "s"};
+            if (failedOutput != "") {failedOutput = ""};
+
+            for(let i = 0; i < failedTracksIndices.length; i++) {
+			    failedOutput += failedTracksIndices[i]+1 + ": ";
+			    failedOutput += $trackdata[failedTracksIndices[i]].artist.name + " - ";
+			    failedOutput += $trackdata[failedTracksIndices[i]].name + "\r\n";
+            }
+
+            message = "Failed to add " + failedTracksIndices.length + " track" + plural + " :(";
+        }
     }
 
 </script>
@@ -169,11 +189,18 @@
     <p style="margin: 10px 0 10px 0;">{message}</p>
 
     {#if playlistLink != ""}
-    <div class="playlist-link">
-        <label for="playlist-link" class="label">Playlist Link</label>
-        <input name="playlist-link" type="text" class="input" bind:value={playlistLink}><br>
-        <a href={playlistLink}><button class="pure-button-primary" href={playlistLink}>Open Playlist <i class="fa-brands fa-spotify"></i></button></a>
-    </div>
+        <div class="playlist-link">
+            <label for="playlist-link" class="label">Playlist Link</label>
+            <input name="playlist-link" type="text" class="input" bind:value={playlistLink}><br>
+            <a href={playlistLink}><button class="pure-button-primary" href={playlistLink}>Open Playlist <i class="fa-brands fa-spotify"></i></button></a>
+        </div>
+
+        {#if failedOutput != ""}
+            <div class="item-output">
+                <label for="failedOutput" class=form-label>Missing songs</label>
+                <textarea readonly id="song-output" name="song-output" rows=limit cols=50 bind:value={failedOutput}></textarea>
+            </div>
+        {/if}
     {/if}
 </div>
 <style>
@@ -218,6 +245,12 @@
         color: white;
         background-color: #0078e7;
     }
+
+    .form-label {
+		margin: 10px 0 10px 0;
+		font-weight: normal;
+		text-align: center;
+	}
     #public-button {
         border-radius: 12px 0 0 12px;
     }
@@ -225,4 +258,11 @@
     #private-button {
         border-radius: 0 12px 12px 0;
     }
+
+    #song-output {
+		/* height: 10em;
+		width: 95vw; */
+		height: 6rem;
+		width: 15rem;
+	}
 </style>
