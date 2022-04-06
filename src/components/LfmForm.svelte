@@ -21,7 +21,7 @@
 		if(output != "") output = "";
 
 		for(let i = 0; i<__trackdata.length; i++) {
-			output += i+1 + ": "
+			output += i+1 + ": ";
 			output += __trackdata[i].artist.name + " - ";
 			output += __trackdata[i].name + "\r\n";
 		}
