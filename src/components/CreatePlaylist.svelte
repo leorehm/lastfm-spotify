@@ -79,8 +79,7 @@
         })
         .then(data => {
             if (data.tracks.items.length == 0) {
-                console.log(data);
-                throw new Error("Track '" + track + "' not found - skipping");
+                throw new Error("Track '" + track + "' not found - skipping. Response: ", data);
             }
             else {
                 console.log("track_id found: ", data.tracks.items[0].uri);
