@@ -79,6 +79,7 @@
         })
         .then(data => {
             if (data.tracks.items.length == 0) {
+                console.log(data);
                 throw new Error("Track '" + track + "' not found - skipping");
             }
             else {
