@@ -197,7 +197,7 @@
 
         {#if failedOutput != ""}
             <div class="item-output">
-                <label for="failedOutput" class=form-label>Missing songs</label>
+                <label for="failedOutput" class=form-label>Missing tracks</label>
                 <textarea readonly id="song-output" name="song-output" rows=limit cols=50 bind:value={failedOutput}></textarea>
             </div>
         {/if}
