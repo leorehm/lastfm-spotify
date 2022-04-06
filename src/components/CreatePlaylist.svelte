@@ -101,7 +101,7 @@
         // get all song ids
         // group ids in arrays with length of spotInsertRest to comply with spotify api
 
-        const indexesNeeded = Math.floor($trackdata.length/spotInsertRest) //counting from 0
+        const indexesNeeded = Math.floor( ($trackdata.length - 1) / spotInsertRest ) //counting from 0
         const ids = new Array(Math.floor(indexesNeeded));
         for (let i = 0; i <= indexesNeeded; i++) {
             ids[i] = [];
