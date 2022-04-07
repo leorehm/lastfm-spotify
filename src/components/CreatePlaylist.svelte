@@ -11,6 +11,11 @@
     let failedOutput = "";
     const spotInsertRest = 100; // spotify restriction of only 100 songs per insertion
 
+    async function removeApostrophes(string) {
+        let result = string.replace(/'/g, "");
+        return result;
+    }
+
     async function getUser() {
         message = "Please wait: getting user data...";
         const accessToken = $token;
@@ -61,6 +66,10 @@
         // query could be optimized for higher accuracy
         
         // console.log("searching for: ", track, " - ", artist);
+
+        // fixes spotify not finding songs with an apostrophe in it
+        // https://github.com/leorehm/lastfm-spotify/issues/7
+        track = await removeApostrophes(track);
 
         const url = `https://api.spotify.com/v1/search?q=track:${track}%20artist:${artist}&type=track&limit=5`;
         const accessToken = $token;
