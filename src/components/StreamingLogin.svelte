@@ -31,10 +31,6 @@
   <div id="login">
     <a href={loginLink}>
       <button class="pure-button pure-button-primary" id="login-btn">Login with Spotify</button>
-    </a>
-    <a href={loginLink}>
-      <button class="pure-button pure-button-primary" id="login-btn">Login with Apple Music</button>
-    </a>
     <br />
     <div id="checkbox-container">
       <label id="checkbox-label" for="remember-me">Remember me?</label>

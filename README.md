@@ -8,4 +8,4 @@ The service is currently hosted using github pages, which is really convenient b
 Access it here: [leorehm.github.io/lastfm-spotify](https://leorehm.github.io/lastfm-spotify)
 ## Apple Music Integration 
 
-Adding Apple Music functionality would be cool, but in order to use their API need an account enrolled in Apples developer program is required, which is 100€/year. 🤡
+Adding Apple Music functionality would be cool, but in order to use their API an account enrolled in Apples developer program is required, which is 100€/year. 🤡
