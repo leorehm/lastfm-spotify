@@ -5,8 +5,7 @@
 
   function generateRandomString(length) {
     let text = "";
-    const possible =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     for (let i = 0; i < length; i++) {
       text += possible.charAt(Math.floor(Math.random() * possible.length));
     }
@@ -14,8 +13,7 @@
   }
 
   const url = new URL("https://accounts.spotify.com/authorize?");
-  const scope =
-    "user-read-private playlist-modify-public playlist-modify-private";
+  const scope = "user-read-private playlist-modify-public playlist-modify-private";
   const state = generateRandomString(16);
   let rememberMe = true;
   $: params = new URLSearchParams({
@@ -32,19 +30,15 @@
 {#if !$token}
   <div id="login">
     <a href={loginLink}>
-      <button class="pure-button pure-button-primary" id="login-btn"
-        >Connect to Spotify</button
-      >
+      <button class="pure-button pure-button-primary" id="login-btn">Login with Spotify</button>
+    </a>
+    <a href={loginLink}>
+      <button class="pure-button pure-button-primary" id="login-btn">Login with Apple Music</button>
     </a>
     <br />
     <div id="checkbox-container">
       <label id="checkbox-label" for="remember-me">Remember me?</label>
-      <input
-        id="checkbox-box"
-        name="remember-me"
-        type="checkbox"
-        bind:checked={rememberMe}
-      />
+      <input id="checkbox-box" name="remember-me" type="checkbox" bind:checked={rememberMe} />
     </div>
   </div>
 {/if}

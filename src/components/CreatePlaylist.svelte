@@ -40,21 +40,18 @@
     console.log("creating playlist for user ", user_id);
     const accessToken = $token;
 
-    const res = await fetch(
-      `https://api.spotify.com/v1/users/${user_id}/playlists`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer " + accessToken,
-        },
-        body: JSON.stringify({
-          name: playlistName,
-          public: playlistScope,
-          description: playlistDesc,
-          public: false,
-        }),
-      }
-    );
+    const res = await fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + accessToken,
+      },
+      body: JSON.stringify({
+        name: playlistName,
+        public: playlistScope,
+        description: playlistDesc,
+        public: false,
+      }),
+    });
 
     if (res.ok) {
       playlistInfo = await res.json();
@@ -93,9 +90,7 @@
       .then((data) => {
         if (data.tracks.items.length == 0) {
           console.log(data);
-          throw new Error(
-            "Track '" + track + "' not found - skipping. Response: "
-          );
+          throw new Error("Track '" + track + "' not found - skipping. Response: ");
         } else {
           console.log("track_id found: ", data.tracks.items[0].uri);
           id = data.tracks.items[0].uri;
@@ -123,10 +118,7 @@
 
     for (let i = 0; i < $trackdata.length; i++) {
       let j = Math.floor(i / spotInsertRest);
-      let songId = await getSongId(
-        $trackdata[i].name,
-        $trackdata[i].artist.name
-      );
+      let songId = await getSongId($trackdata[i].name, $trackdata[i].artist.name);
       // prevents adding a song with an empty id, which would cause the whole api-call to fail
       if (songId != null) {
         ids[j].push(songId);
@@ -185,32 +177,17 @@
         failedOutput += $trackdata[failedTracksIndices[i]].name + "\r\n";
       }
 
-      message =
-        "Failed to add " +
-        failedTracksIndices.length +
-        " track" +
-        plural +
-        " :(";
+      message = "Failed to add " + failedTracksIndices.length + " track" + plural + " :(";
     }
   }
 </script>
 
 <div class="container">
   <label class="label" for="playlist-name">Playlist Name</label>
-  <input
-    class="input"
-    name="playlist-name"
-    type="text"
-    bind:value={playlistName}
-  /><br />
+  <input class="input" name="playlist-name" type="text" bind:value={playlistName} /><br />
 
   <label class="label" for="playlist-desc">Description</label>
-  <input
-    class="input"
-    name="playlist-desc"
-    type="text"
-    bind:value={playlistDesc}
-  /><br />
+  <input class="input" name="playlist-desc" type="text" bind:value={playlistDesc} /><br />
 
   <label for="playlist-scope" class="label">Visibility</label>
   <div name="playlist-scope" class="pure-button-group" role="group">
@@ -237,12 +214,7 @@
   {#if playlistLink != ""}
     <div class="playlist-link">
       <label for="playlist-link" class="label">Playlist Link</label>
-      <input
-        name="playlist-link"
-        type="text"
-        class="input"
-        bind:value={playlistLink}
-      /><br />
+      <input name="playlist-link" type="text" class="input" bind:value={playlistLink} /><br />
       <a href={playlistLink}
         ><button class="pure-button-primary" href={playlistLink}
           >Open Playlist <i class="fa-brands fa-spotify" /></button
@@ -253,14 +225,7 @@
     {#if failedOutput != ""}
       <div class="item-output">
         <label for="failedOutput" class="form-label">Missing tracks</label>
-        <textarea
-          readonly
-          id="song-output"
-          name="song-output"
-          rows="limit"
-          cols="50"
-          bind:value={failedOutput}
-        />
+        <textarea readonly id="song-output" name="song-output" rows="limit" cols="50" bind:value={failedOutput} />
       </div>
     {/if}
   {/if}

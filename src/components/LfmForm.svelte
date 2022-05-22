@@ -27,8 +27,7 @@
     }
 
     if (output == "") {
-      output =
-        "It seems there are no songs available for the selected username and/or time period.";
+      output = "It seems there are no songs available for the selected username and/or time period.";
       nextButtonDisabled = true;
       return;
     }
@@ -58,9 +57,7 @@
         if (response.ok) {
           return response.json();
         }
-        throw new Error(
-          "No songs found. User may not exist or have songs scrobbled during the selected timeframe."
-        );
+        throw new Error("No songs found. User may not exist or have songs scrobbled during the selected timeframe.");
       })
       .then((data) => {
         res = data.toptracks.track;
@@ -78,23 +75,11 @@
   <form class="item-form" on:submit|preventDefault={onSubmit}>
     <div>
       <label class="form-label" for="username">last.fm Username</label>
-      <input
-        class="form-input"
-        name="username"
-        type="text"
-        bind:value={username}
-      /><br />
+      <input class="form-input" name="username" type="text" bind:value={username} /><br />
     </div>
     <div>
       <label class="form-label" for="limit">Track Limit</label>
-      <input
-        class="form-input"
-        name="limit"
-        type="number"
-        bind:value={limit}
-        min="1"
-        max="100"
-      /><br />
+      <input class="form-input" name="limit" type="number" bind:value={limit} min="1" max="100" /><br />
     </div>
     <div>
       <label class="form-label" for="period">Time Period</label>
@@ -105,30 +90,15 @@
       </select><br />
     </div>
   </form>
-  <button
-    class="pure-button-primary"
-    id="submit-button"
-    disbaled={(username = "")}
-    on:click={onSubmit}>Get Data <i class="fa-brands fa-lastfm" /></button
+  <button class="pure-button-primary" id="submit-button" disbaled={(username = "")} on:click={onSubmit}
+    >Get Data <i class="fa-brands fa-lastfm" /></button
   >
 
   <div class="item-output">
     <label for="output" class="form-label">Songs retrieved from last.fm</label>
-    <textarea
-      readonly
-      id="song-output"
-      name="song-output"
-      rows="limit"
-      cols="50"
-      bind:value={output}
-    />
+    <textarea readonly id="song-output" name="song-output" rows="limit" cols="50" bind:value={output} />
   </div>
-  <button
-    class="pure-button-primary"
-    id="next-button"
-    disabled={nextButtonDisabled}
-    on:click={onNext}>Next</button
-  >
+  <button class="pure-button-primary" id="next-button" disabled={nextButtonDisabled} on:click={onNext}>Next</button>
 </div>
 
 <style>

@@ -19,7 +19,7 @@ export const appUrl = readable(null, function start(set) {
     set("https://leorehm.github.io/lastfm-spotify");
   } else {
     set("http://localhost:8080/");
-    console.log("environment set to dev")
+    console.log("environment set to dev");
   }
 });
 
