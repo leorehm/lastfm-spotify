@@ -12,6 +12,7 @@
     return text;
   }
 
+  // Spotify
   const url = new URL("https://accounts.spotify.com/authorize?");
   const scope = "user-read-private playlist-modify-public playlist-modify-private";
   const state = generateRandomString(16);
@@ -25,17 +26,28 @@
     state,
   });
   $: loginLink = url + params;
+
+  // Apple Music
+
 </script>
 
 {#if !$token}
+  <h3 style="text-align: center">Login using:</h3>
   <div id="login">
     <a href={loginLink}>
-      <button class="pure-button pure-button-primary" id="login-btn">Login with Spotify</button>
-    <br />
-    <div id="checkbox-container">
-      <label id="checkbox-label" for="remember-me">Remember me?</label>
-      <input id="checkbox-box" name="remember-me" type="checkbox" bind:checked={rememberMe} />
-    </div>
+      <button class="pure-button pure-button-primary" id="login-btn"><i class="fa-brands fa-spotify" /> Spotify</button>
+      <br />
+      <a href="">
+        <button class="pure-button pure-button-primary" id="login-btn"
+          ><i class="fa-brands fa-apple" /> Apple Music</button
+        >
+        <br />
+        <div id="checkbox-container">
+          <label id="checkbox-label" for="remember-me">Remember me?</label>
+          <input id="checkbox-box" name="remember-me" type="checkbox" bind:checked={rememberMe} />
+        </div>
+      </a></a
+    >
   </div>
 {/if}
 
@@ -62,6 +74,7 @@
     margin-left: auto;
     margin-right: auto;
     height: 3rem;
+    width: 12rem;
     padding-left: 10px;
     padding-right: 10px;
 
