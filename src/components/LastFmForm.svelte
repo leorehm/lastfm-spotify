@@ -46,7 +46,9 @@
   // TODO: input username, period, limit and api key as parameter with URLSeachParams()
   async function fetchLfmData() {
     let res;
-    console.log("fetching last.fm data...");
+    
+    // console.log("fetching last.fm data...");
+
     const url =
       "https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=" +
       username +
@@ -66,7 +68,7 @@
       })
       .then((data) => {
         res = data.toptracks.track;
-        console.log("...done!");
+        // console.log("...done!");
       })
       .catch((error) => {
         console.log(error);
