@@ -5,3 +5,5 @@ var app = new App({
 });
 
 export default app;
+
+export const LASTFM_API_KEY = "test";

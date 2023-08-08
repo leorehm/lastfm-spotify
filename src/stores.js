@@ -15,7 +15,7 @@ export const token = readable(null, function start(set) {
 });
 
 export const appUrl = readable(null, function start(set) {
-  if (process.env == "prod") {
+  if (process.env.type == "prod") {
     set("https://leorehm.github.io/lastfm-spotify");
   } else {
     set("http://localhost:8080/");

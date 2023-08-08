@@ -6,6 +6,9 @@ import { terser } from "rollup-plugin-terser";
 import css from "rollup-plugin-css-only";
 import replace from "@rollup/plugin-replace";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 const production = !process.env.ROLLUP_WATCH;
 
 function serve() {
@@ -39,13 +42,21 @@ export default {
   },
   plugins: [
     replace({
-      "process.env": production ? '"prod"' : '"dev"',
+      "process.env.type": production ? '"prod"' : '"dev"',
+      "process.env.LASTFM_API_KEY": `"${process.env.LASTFM_API_KEY}"`,
+      "process.env.SPOTIFY_CLIENT_ID": `"${process.env.SPOTIFY_CLIENT_ID}"`,
     }),
     svelte({
       compilerOptions: {
         // enable run-time checks when not in production
         dev: !production,
       },
+      // preprocess: sveltePreprocess({
+      //   replace: [
+      //     // ["process.env.LASTFM_API_KEY", '"' + process.env.LASTFM_API_KEY + '"'],
+      //     // ["process.env.SPOTIFY_CLIENT_ID", '"' + process.env.SPOTIFY_CLIENT_ID + '"'],
+      //   ],
+      // }),
     }),
     // we'll extract any component CSS out into
     // a separate file - better for performance
