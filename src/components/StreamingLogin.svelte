@@ -1,7 +1,7 @@
 <script>
   import { token, tokenExpired, appUrl } from "../stores.js";
 
-  const client_id = "e27568bbeef44f7db83b446e2d6f57ab";
+  const client_id = process.env.SPOTIFY_CLIENT_ID;
 
   function generateRandomString(length) {
     let text = "";
@@ -16,6 +16,7 @@
   const scope = "user-read-private playlist-modify-public playlist-modify-private";
   const state = generateRandomString(16);
   let rememberMe = true;
+
   $: params = new URLSearchParams({
     response_type: "token",
     show_dialog: !rememberMe, // Will show up on first sign-on regardless
@@ -24,6 +25,7 @@
     redirect_uri: $appUrl,
     state,
   });
+
   $: loginLink = url + params;
 </script>
 

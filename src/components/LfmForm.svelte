@@ -1,16 +1,21 @@
 <script>
   import { timeRange, token, tokenExpired, trackdata } from "../stores.js";
+
   $: username = "";
+
   const period = ["overall", "7day", "1month", "3month", "6month", "12month"];
+  
+  const apiKey = process.env.LASTFM_API_KEY;
+
   let chosenPeriod = "7day";
   let limit = 20;
-  const apiKey = "57411198178c595fbb09fabbe83934ac";
   let __trackdata;
   let output = "";
   let nextButtonDisabled = true;
 
   async function onSubmit() {
-    console.log("username: ", username);
+    // console.log("username: ", username);
+
     try {
       __trackdata = await fetchLfmData();
     } catch (e) {
