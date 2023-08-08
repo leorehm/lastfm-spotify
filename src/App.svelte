@@ -1,5 +1,5 @@
 <script>
-  import LfmForm from "./components/LfmForm.svelte";
+  import LastFmForm from "./components/LastFmForm.svelte";
   import StreamingLogin from "./components/StreamingLogin.svelte";
   import CreatePlaylist from "./components/CreatePlaylist.svelte";
   import { timeRange, token, tokenExpired, trackdata } from "./stores.js";
@@ -14,7 +14,7 @@
     {#if !$token || $tokenExpired}
       <StreamingLogin />
     {:else if !$trackdata}
-      <LfmForm />
+      <LastFmForm />
     {:else if $token && $trackdata}
       <CreatePlaylist />
     {/if}
