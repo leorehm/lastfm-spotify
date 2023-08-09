@@ -42,7 +42,7 @@ export default {
   },
   plugins: [
     replace({
-      "process.env.type": production ? '"prod"' : '"dev"',
+      "process.env": production ? '"prod"' : '"dev"',
       "process.env.LASTFM_API_KEY": `"${process.env.LASTFM_API_KEY}"`,
       "process.env.SPOTIFY_CLIENT_ID": `"${process.env.SPOTIFY_CLIENT_ID}"`,
     }),
