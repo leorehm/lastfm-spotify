@@ -2,12 +2,14 @@
   import LastFmForm from "./components/LastFmForm.svelte";
   import StreamingLogin from "./components/StreamingLogin.svelte";
   import CreatePlaylist from "./components/CreatePlaylist.svelte";
-  import { timeRange, token, tokenExpired, trackdata } from "./stores.js";
+  import { appUrl, token, tokenExpired, trackdata } from "./stores.js";
 </script>
 
 <div id="app">
-  <div id="head">
-    <h2 style="text-align: center">last.fm to spotify playlist</h2>
+  <div id="header">
+    <a href={$appUrl} style="text-decoration: none">
+      <h2 style="text-align: center">last.fm to spotify playlist</h2>
+    </a>
   </div>
 
   <main id="main">
