@@ -42,9 +42,10 @@ export default {
   },
   plugins: [
     replace({
+      preventAssignment: true,
       "process.env": production ? '"prod"' : '"dev"',
-      "process.env.LASTFM_API_KEY": `"${process.env.LASTFM_API_KEY}"`,
-      "process.env.SPOTIFY_CLIENT_ID": `"${process.env.SPOTIFY_CLIENT_ID}"`,
+      "process.env.LASTFM_API_KEY": JSON.stringify(process.env.LASTFM_API_KEY),
+      "process.env.SPOTIFY_CLIENT_ID": JSON.stringify(process.env.SPOTIFY_CLIENT_ID),
     }),
     svelte({
       compilerOptions: {
