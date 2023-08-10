@@ -23,6 +23,11 @@ jobs:
       - name: Install dependencies
         run: npm install
       
+      - name: Print variables
+        run: |
+          echo ${{ secrets.LASTFM_API_KEY }}
+          echo ${{ secrets.SPOTIFY_CLIENT_ID }}
+      
       - name: Build
         run: npm run build
         env:
