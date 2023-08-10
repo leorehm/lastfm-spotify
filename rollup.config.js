@@ -9,7 +9,7 @@ import replace from "@rollup/plugin-replace";
 import dotenv from "dotenv";
 dotenv.config();
 
-const isProd = !process.env.ROLLUP_WATCH;   // true if production environment
+const production = !process.env.ROLLUP_WATCH;   // true if production environment
 
 function serve() {
   let server;
@@ -42,7 +42,7 @@ export default {
   },
   plugins: [
     replace({
-      "process.env": isProd ? '"prod"' : '"dev"',
+      "process.env": production ? '"prod"' : '"dev"',
       "process.env.LASTFM_API_KEY": `"${process.env.LASTFM_API_KEY}"`,
       "process.env.SPOTIFY_CLIENT_ID": `"${process.env.SPOTIFY_CLIENT_ID}"`,
     }),
