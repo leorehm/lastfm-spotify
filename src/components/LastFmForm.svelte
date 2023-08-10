@@ -6,6 +6,7 @@
   const period = ["overall", "7day", "1month", "3month", "6month", "12month"];
   
   const apiKey = process.env.LASTFM_API_KEY;
+  console.log(apiKey)
 
   let chosenPeriod = "7day";
   let limit = 20;
