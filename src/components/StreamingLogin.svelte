@@ -12,11 +12,12 @@
     return text;
   }
 
-  const url = new URL("https://accounts.spotify.com/authorize?");
   const scope = "user-read-private playlist-modify-public playlist-modify-private";
   const state = generateRandomString(16);
   let rememberMe = true;
-
+  
+  const url = new URL("https://accounts.spotify.com/authorize?");
+  
   $: params = new URLSearchParams({
     response_type: "token",
     show_dialog: !rememberMe, // Will show up on first sign-on regardless

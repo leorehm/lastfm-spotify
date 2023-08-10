@@ -7,12 +7,12 @@
   let user_id;
   let playlistInfo;
   let message = "";
-  let failedTracksIndices = [];
+  let failedTracks = [];
   let failedOutput = "";
   const spotInsertRest = 100; // spotify restriction of only 100 songs per insertion
 
   // removes " ' " " { " and " } " from a given string as spotify cant handle them in the track name
-  async function transformStringForSpotify(string) {
+  function transformStringForSpotify(string) {
     let result = string.replace(/['{}]/g, "");
     return result;
   }
@@ -73,8 +73,11 @@
     track = await transformStringForSpotify(track);
 
     const url = `https://api.spotify.com/v1/search?q=track:${track}%20artist:${artist}&type=track&limit=5`;
+    
     const accessToken = $token;
     let id;
+    
+    // search for a given track on spotify
     const res = await fetch(url, {
       method: "GET",
       headers: {
@@ -94,6 +97,9 @@
         } else {
           console.log("track_id found: ", data.tracks.items[0].uri);
           id = data.tracks.items[0].uri;
+
+          // TODO: increase accuracy by 
+
         }
       })
       .catch((error) => {
@@ -112,18 +118,22 @@
 
     const indexesNeeded = Math.floor(($trackdata.length - 1) / spotInsertRest); //counting from 0
     const ids = new Array(Math.floor(indexesNeeded));
+    
     for (let i = 0; i <= indexesNeeded; i++) {
       ids[i] = [];
     }
 
     for (let i = 0; i < $trackdata.length; i++) {
+      let track = $trackdata[i];
       let j = Math.floor(i / spotInsertRest);
-      let songId = await getSongId($trackdata[i].name, $trackdata[i].artist.name);
+
+      let songId = await getSongId(track.name, track.artist.name);
+
       // prevents adding a song with an empty id, which would cause the whole api-call to fail
       if (songId != null) {
         ids[j].push(songId);
       } else {
-        failedTracksIndices.push(i);
+        failedTracks.push(i);
       }
     }
     // console.log("finished getting track ids:", ids);
@@ -160,25 +170,24 @@
     }
 
     playlistLink = playlistInfo.external_urls.spotify;
-    if (failedTracksIndices.length == 0) {
+
+    if (failedTracks.length == 0) {
       message = "Success!";
     } else {
-      let plural = "";
-      if (failedTracksIndices.length > 1) {
-        plural = "s";
-      }
-      if (failedOutput != "") {
-        failedOutput = "";
+      // output failed tracks
+      for (let track in failedTracks) {
+        failedOutput += formatTrackForOutput(track);
       }
 
-      for (let i = 0; i < failedTracksIndices.length; i++) {
-        failedOutput += failedTracksIndices[i] + 1 + ": ";
-        failedOutput += $trackdata[failedTracksIndices[i]].artist.name + " - ";
-        failedOutput += $trackdata[failedTracksIndices[i]].name + "\r\n";
-      }
-
-      message = "Failed to add " + failedTracksIndices.length + " track" + plural + " :(";
+      message = `Failed to add + ${failedTracks.length} track${failedTracks.length > 1 ? "s" : "" } :(`;
     }
+  }
+
+  function formatTrackForOutput(index, addLineBreak = true) {
+    const track = $trackdata[index];
+    var output = `${track.artist.name} - ${track.name}`;
+    if (addLineBreak) output + "\r\n";
+    return output;
   }
 </script>
 

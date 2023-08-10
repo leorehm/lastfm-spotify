@@ -14,21 +14,20 @@
   let nextButtonDisabled = true;
 
   async function onSubmit() {
-    // console.log("username: ", username);
-
+    // get data from lastfm
     try {
-      __trackdata = await fetchLfmData();
+      __trackdata = await fetchLastFmData();
     } catch (e) {
       output = trackdata.toString();
       return;
     }
-
-    if (output != "") output = "";
+    
+    // clear output
+    output = "";
 
     for (let i = 0; i < __trackdata.length; i++) {
-      output += i + 1 + ": ";
-      output += __trackdata[i].artist.name + " - ";
-      output += __trackdata[i].name + "\r\n";
+      let track = __trackdata[i];
+      output += `${i+1}: ${track.artist.name} - ${track.name}\r\n`;
     }
 
     if (output == "") {
@@ -43,23 +42,21 @@
     $trackdata = __trackdata;
   }
 
-  // TODO: input username, period, limit and api key as parameter with URLSeachParams()
-  async function fetchLfmData() {
-    let res;
-    
-    // console.log("fetching last.fm data...");
+  async function fetchLastFmData() {
+    var res;
 
-    const url =
-      "https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=" +
-      username +
-      "&period=" +
-      chosenPeriod +
-      "&limit=" +
-      limit +
-      "&api_key=" +
-      apiKey +
-      "&format=json";
-    await fetch(url)
+    const url = new URL("https://ws.audioscrobbler.com/2.0/?");
+
+    const params = new URLSearchParams({
+      "method": "user.gettoptracks",
+      "username": username,
+      "period": chosenPeriod,
+      "limit": limit,
+      "api_key": apiKey,
+      "format": "json",
+    })
+
+    await fetch(url + params)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -68,7 +65,6 @@
       })
       .then((data) => {
         res = data.toptracks.track;
-        // console.log("...done!");
       })
       .catch((error) => {
         console.log(error);
